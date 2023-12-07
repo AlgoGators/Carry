@@ -1,9 +1,4 @@
-# Import functions from other chapters
-import matplotlib
-
-matplotlib.use("TkAgg")
-
-import pandas as pd
+from chapter1 import pd_readcsv
 from chapter1 import calculate_stats
 from chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
 from chapter3 import standardDeviation
@@ -15,9 +10,12 @@ from chapter4 import (
 
 from chapter5 import calculate_perc_returns_for_dict_with_costs
 from chapter8 import apply_buffering_to_position_dict
-from chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied, calculate_position_with_multiple_carry_forecast_applied,calculate_combined_carry_forecast, calculate_forecast_for_carry, calculate_smoothed_carry, calculate_vol_adjusted_carry, calculate_annualised_carry, _total_year_frac_from_contract_series, _year_from_contract_series, _month_as_year_frac_from_contract_series, _month_from_contract_series    
+from chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied
+#from GetMultipliers import getMultiplierDict
+print("Hello world")
 
 
+INSTRUMENT_LIST = ['sp500', 'gas']
 
 ## Get underlying price, adjusted price, and carry price
 def get_data_dict_with_carry(instrument_list: list = None):
@@ -56,6 +54,8 @@ def get_data_dict_with_carry(instrument_list: list = None):
 
     return adjusted_prices, current_prices, carry_data
 
+##print(get_data_dict_with_carry(['sp500']))
+##print(get_data_dict_with_carry(['gas']))
 
 def calc_idm(instrument_list: list) -> float:
 
@@ -90,6 +90,7 @@ def calc_idm(instrument_list: list) -> float:
     # if we reached here, something went wrong
     raise ValueError("Instrument Diversity Multiplier not found")   
 
+##print(calc_idm(['sp500', 'gas']))
 
 
 
@@ -122,9 +123,6 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
         )
     )
 
-    # Use 4 arbitrary spans here [5,20,60,120] for both instruments 
-    # but in reality we would need to check for costs 
-
     position_contracts_dict = (
         calculate_position_dict_with_multiple_carry_forecast_applied(
             adjusted_prices_dict=adjusted_prices_dict,
@@ -153,31 +151,21 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
     return perc_return_dict, buffered_position_dict
 
 
-# List of all instruments in the portfolio
-INSTRUMENT_LIST = ['sp500', 'gas']
 
-even_weights = 1 / len(INSTRUMENT_LIST)
+capital = 500000
 
-weights = dict(sp500=even_weights, gas=even_weights)
-# dict of equal weight for each instrument in the list
-weights = {instrument: even_weights for instrument in INSTRUMENT_LIST}
-
-## Having trouble import getMultiplierDict()
-multipliers = dict(sp500=5, gas=10000)
-##multipliers = getMultiplierDict()
 risk_target_tau = 0.2
 
-capital: int = 500000
+even_weights = 1 / len(INSTRUMENT_LIST)
+weights = dict(sp500=even_weights, gas=even_weights)
+
+multipliers = dict(sp500=5, gas=10000)
+
+carry_spans = [5,20,60,120]
+
+##multipliers = getMultiplierDict()
 
 
-perc, fc = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, [5, 20, 60, 120])
-
-df = pd.DataFrame.from_dict(fc)
-
-print(calculate_stats(perc['sp500']))
-
-df.to_csv("out.csv")
-
-
-
-
+print(carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans))
+##perc, fc = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
+##print(calculate_stats(perc))
