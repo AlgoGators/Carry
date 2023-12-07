@@ -1,3 +1,4 @@
+import pandas as pd
 from chapter1 import pd_readcsv
 from chapter1 import calculate_stats
 from chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
@@ -167,5 +168,8 @@ carry_spans = [5,20,60,120]
 
 
 print(carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans))
-##perc, fc = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
+perc, fc = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
 ##print(calculate_stats(perc))
+
+forecast = pd.DataFrame.from_dict(fc)
+forecast.to_csv("out.csv")
