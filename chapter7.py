@@ -1,3 +1,4 @@
+## Next two lines are optional depending on your IDE
 import matplotlib
 
 matplotlib.use("TkAgg")

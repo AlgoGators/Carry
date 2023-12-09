@@ -1,3 +1,19 @@
+"""
+This is the provided example python code for Chapter eight of the book:
+ "Advanced Futures Trading Strategies", by Robert Carver
+ https://www.systematicmoney.org/advanced-futures
+
+This code is copyright, Robert Carver 2022.
+Shared under https://www.gnu.org/licenses/gpl-3.0.en.html
+You may copy, modify, and share this code as long as this header is retained, and you disclose that it has been edited.
+This code comes with no warranty, is not guaranteed to be accurate, and the author is not responsible for any losses that may result from it’s use.
+
+Results may not match the book exactly as different data may be used
+Results may be different from the corresponding spreadsheet as methods may be slightly different
+
+"""
+
+## Next two lines are optional depending on your IDE
 import matplotlib
 
 matplotlib.use("TkAgg")
@@ -66,7 +82,7 @@ def apply_buffer(
     lower_buffer = lower_buffer.ffill().round()
     use_optimal_position = optimal_position.ffill()
 
-    current_position = use_optimal_position[0]
+    current_position = use_optimal_position.iloc[0]
     if np.isnan(current_position):
         current_position = 0.0
 
@@ -75,8 +91,8 @@ def apply_buffer(
     for idx in range(len(optimal_position.index))[1:]:
         current_position = apply_buffer_single_period(
             last_position=current_position,
-            top_pos=upper_buffer[idx],
-            bot_pos=lower_buffer[idx],
+            top_pos = upper_buffer.iloc[idx],
+            bot_pos = lower_buffer.iloc[idx],
         )
 
         buffered_position_list.append(current_position)
