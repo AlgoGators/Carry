@@ -63,7 +63,7 @@ def apply_buffer(
     lower_buffer = lower_buffer.ffill().round()
     use_optimal_position = optimal_position.ffill()
 
-    current_position = use_optimal_position[0]
+    current_position = use_optimal_position.iloc[0]
     if np.isnan(current_position):
         current_position = 0.0
 
@@ -72,8 +72,8 @@ def apply_buffer(
     for idx in range(len(optimal_position.index))[1:]:
         current_position = apply_buffer_single_period(
             last_position=current_position,
-            top_pos=upper_buffer[idx],
-            bot_pos=lower_buffer[idx],
+            top_pos=upper_buffer.iloc[idx],
+            bot_pos=lower_buffer.iloc[idx],
         )
 
         buffered_position_list.append(current_position)

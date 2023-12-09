@@ -1,18 +1,3 @@
-"""
-This is the provided example python code for Chapter nine of the book:
- "Advanced Futures Trading Strategies", by Robert Carver
- https://www.systematicmoney.org/advanced-futures
-
-This code is copyright, Robert Carver 2022.
-Shared under https://www.gnu.org/licenses/gpl-3.0.en.html
-You may copy, modify, and share this code as long as this header is retained, and you disclose that it has been edited.
-This code comes with no warranty, is not guaranteed to be accurate, and the author is not responsible for any losses that may result from it’s use.
-
-Results may not match the book exactly as different data may be used
-Results may be different from the corresponding spreadsheet as methods may be slightly different
-
-"""
-
 ## Next two lines are optional depending on your IDE
 import matplotlib
 
