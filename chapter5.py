@@ -174,7 +174,7 @@ def calculate_deflated_costs(
 
     stdev_daily_price = stddev_series.daily_risk_price_terms()
 
-    final_stdev = stdev_daily_price[-1]
+    final_stdev = stdev_daily_price.iloc[-1]
     cost_deflator = stdev_daily_price / final_stdev
     historic_cost_per_contract = cost_per_contract * cost_deflator
 
