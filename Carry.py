@@ -12,11 +12,9 @@ from chapter4 import (
 from chapter5 import calculate_perc_returns_for_dict_with_costs
 from chapter8 import apply_buffering_to_position_dict
 from chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied
-#from GetMultipliers import getMultiplierDict
-print("Hello world")
+from GetMultpliers import getMultiplierDict
+from forecaster import calculate_capped_forecast
 
-
-INSTRUMENT_LIST = ['sp500', 'gas']
 
 ## Get underlying price, adjusted price, and carry price
 def get_data_dict_with_carry(instrument_list: list = None):
@@ -148,10 +146,17 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
         cost_per_contract_dict=cost_per_contract_dict,
         std_dev_dict=std_dev_dict,
     )
+
+    capped_forecast_dict = calculate_capped_forecast(
+        adjusted_prices_dict, 
+        std_dev_dict, 
+        carry_prices_dict, 
+        carry_spans,
+        )
     
-    return perc_return_dict, buffered_position_dict
+    return perc_return_dict, buffered_position_dict, capped_forecast_dict
 
-
+INSTRUMENT_LIST = ['sp500', 'gas']
 
 capital = 500000
 
@@ -160,16 +165,23 @@ risk_target_tau = 0.2
 even_weights = 1 / len(INSTRUMENT_LIST)
 weights = dict(sp500=even_weights, gas=even_weights)
 
-multipliers = dict(sp500=5, gas=10000)
+multipliers = getMultiplierDict()
 
 carry_spans = [5,20,60,120]
 
-##multipliers = getMultiplierDict()
+#TODO add dynamic optimization
+
 
 
 print(carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans))
-perc, fc = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
+perc, buff_pos, capped_forecast = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
 ##print(calculate_stats(perc))
 
-forecast = pd.DataFrame.from_dict(fc)
-forecast.to_csv("out.csv")
+positions = pd.DataFrame.from_dict(buff_pos)
+positions.to_csv("carryPositions.csv")
+
+returns = pd.DataFrame.from_dict(perc)
+returns.to_csv("carryReturns.csv")
+
+capped_fc = pd.DataFrame.from_dict(capped_forecast)
+capped_fc.to_csv("carryCappedForecasts.csv")
