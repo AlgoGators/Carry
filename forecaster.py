@@ -63,16 +63,3 @@ print(capped_forecasts_dict)
 
 capped_forecasts_df = pd.DataFrame(capped_forecasts_dict)
 print(capped_forecasts_df)
-
-capped_forecasts_df.to_csv("forecasts.csv")
-
-
-
-existing_data = pd.read_csv("out.csv")
-
-# Assuming capped_forecasts_df has the same index as existing_data
-# If not, you may need to adjust the merging process
-result_df = pd.merge(existing_data, capped_forecasts_df, left_index=True, right_index=True, how='outer')
-
-# Save the updated DataFrame with forecasts to the CSV file
-result_df.to_csv("outnew.csv", index=True)
