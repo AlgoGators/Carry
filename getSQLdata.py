@@ -97,3 +97,4 @@ def get_data_dict_with_carry():
 
 adjusted_prices_dict, current_prices_dict, carry_data = get_data_dict_with_carry()
 print(carry_data)
+print(current_prices_dict)
