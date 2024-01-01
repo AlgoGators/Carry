@@ -38,11 +38,11 @@ def get_data_dict_with_carry(instrument_list: list = None):
 
     # Connection string for SQL Server Authentication - do not change
     params = urllib.parse.quote_plus(fr'DRIVER={driver};SERVER={server};DATABASE={database1};UID={username};PWD={password}')
-    engine1 = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params)
+    engine1 = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params, pool_size=10, max_overflow=-1 )
 
     # Connection string for SQL Server Authentication - do not change
     params2 = urllib.parse.quote_plus(fr'DRIVER={driver};SERVER={server};DATABASE={database2};UID={username};PWD={password}')
-    engine2 = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params2)
+    engine2 = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params2, pool_size=10, max_overflow=-1)
 
 
     # Initialize dictionaries to store data
@@ -51,18 +51,22 @@ def get_data_dict_with_carry(instrument_list: list = None):
     carry_data = {}
 
     for instrument_code in instrument_list:
+        try:
         # Fetch adjusted prices
-        adjusted_query = f"SELECT Date, [Close] FROM [{instrument_code}]"
-        adjusted_prices[instrument_code] = pd.read_sql(adjusted_query, engine1)
+            adjusted_query = f"SELECT Date, [Close] FROM [{instrument_code}]"
+            adjusted_prices[instrument_code] = pd.read_sql(adjusted_query, engine1)
 
         # Fetch current prices (unadjusted)
-        current_query = f"SELECT Date, [Unadj_Close] FROM [{instrument_code}]"
-        current_prices[instrument_code] = pd.read_sql(current_query, engine1)
+            current_query = f"SELECT Date, [Unadj_Close] FROM [{instrument_code}]"
+            current_prices[instrument_code] = pd.read_sql(current_query, engine1)
 
-    for instrument_code in instrument_list:
         # Fetch carry data
-        carry_query = f"SELECT * FROM [{instrument_code}_Carry]"
-        carry_data[instrument_code] = pd.read_sql(carry_query, engine2)
+            carry_query = f"SELECT * FROM [{instrument_code}_Carry]"
+            carry_data[instrument_code] = pd.read_sql(carry_query, engine2)
+
+        except Exception as e:
+            print(f"Error processing {instrument_code}: {str(e)}")
+
 
     return adjusted_prices, current_prices, carry_data
 
