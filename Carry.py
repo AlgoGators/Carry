@@ -104,7 +104,7 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
     
     instrument_weights = weights
     
-    cost_per_contract_dict = dict(sp500=0.875, gas=15.3)
+    cost_per_contract_dict = dict(sp500=0.875, us5 = 1, us10 = 1)
 
     std_dev_dict = calculate_variable_standard_deviation_for_risk_targeting_from_dict(
         adjusted_prices=adjusted_prices_dict, current_prices=current_prices_dict
@@ -156,20 +156,18 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
     
     return perc_return_dict, buffered_position_dict, capped_forecast_dict
 
-INSTRUMENT_LIST = ['sp500', 'gas']
+INSTRUMENT_LIST = ['sp500', 'us5', 'us10']
 
-capital = 500000
+capital = 400000
 
 risk_target_tau = 0.2
 
 even_weights = 1 / len(INSTRUMENT_LIST)
-weights = dict(sp500=even_weights, gas=even_weights)
+weights = dict(sp500=even_weights, us5=even_weights, us10=even_weights)
 
 multipliers = getMultiplierDict()
 
 carry_spans = [5,20,60,120]
-
-#TODO add dynamic optimization
 
 
 
@@ -178,10 +176,10 @@ perc, buff_pos, capped_forecast = carry_forecast(capital, risk_target_tau, weigh
 ##print(calculate_stats(perc))
 
 positions = pd.DataFrame.from_dict(buff_pos)
-positions.to_csv("carryPositions.csv")
+positions.to_csv("TestCarryPositions.csv")
 
 returns = pd.DataFrame.from_dict(perc)
-returns.to_csv("carryReturns.csv")
+returns.to_csv("TestcarryReturns.csv")
 
 capped_fc = pd.DataFrame.from_dict(capped_forecast)
-capped_fc.to_csv("carryCappedForecasts.csv")
+capped_fc.to_csv("TestcarryCappedForecasts.csv")
