@@ -7,7 +7,7 @@ import urllib
 def get_data_dict_with_carry():
     
 
-        # Server and database information - *update driver as needed*
+    # Server and database information - *update driver as needed*
     driver = 'ODBC Driver 18 for SQL Server'
     server = 'algo.database.windows.net'
     username = 'dbmaster'
@@ -19,14 +19,18 @@ def get_data_dict_with_carry():
 
     # Connection string for SQL Server Authentication - do not change
     params = urllib.parse.quote_plus(fr'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}')
+    params2 = urllib.parse.quote_plus(fr'DRIVER={driver};SERVER={server};DATABASE={database2};UID={username};PWD={password}')
+
     engine = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params)
+    engine2 = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params2)
+
 
     # Retrieve a list of all table names in the database - do not change
     table_names_query = "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog='" + database + "'"
     table_names = pd.read_sql(table_names_query, engine)['table_name'].tolist()
 
-    table_names_query2 =  "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog='" + database + "'"
-    table_names = pd.read_sql(table_names_query2, engine)['table_name'].tolist()
+    table_names_query2 =  "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog='" + database2 + "'"
+    table_names2 = pd.read_sql(table_names_query2, engine2)['table_name'].tolist()
 
 
 
@@ -80,9 +84,16 @@ def get_data_dict_with_carry():
       #  ]
  #   )
 
+    carry_data = {}
 
-    return adjusted_prices, current_prices
+    
+    for table_name in table_names2:
+        table_query = f"SELECT * FROM [{table_name}]"
+        carry_data[table_name] = pd.read_sql(table_query, engine2)
 
 
-adjusted_prices_dict, current_prices_dict = get_data_dict_with_carry()
-print(adjusted_prices_dict)
+    return adjusted_prices, current_prices, carry_data
+
+
+adjusted_prices_dict, current_prices_dict, carry_data = get_data_dict_with_carry()
+print(carry_data)
