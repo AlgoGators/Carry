@@ -8,7 +8,7 @@ DUSTIN_DATE_FORMAT = "%m/%d/%Y"
 def pd_read_sql(
     ins_code: str,
     engine,
-        date_format=DEFAULT_DATE_FORMAT,
+        date_format=DUSTIN_DATE_FORMAT,
         date_index_name: str="Date",
 ) -> pd.DataFrame:
 
