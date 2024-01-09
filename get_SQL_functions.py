@@ -12,7 +12,7 @@ def pd_read_sql(
         date_index_name: str="index",
 ) -> pd.DataFrame:
 
-    ans = pd.read_sql(f"select * from {ins_code}", engine)
+    ans = pd.read_sql(f"SELECT * FROM {ins_code}", engine)
     ans.index = pd.to_datetime(ans[date_index_name], format=date_format).values
 
     del ans[date_index_name]
@@ -46,7 +46,7 @@ def get_data_dict_sql_no_carry(instr_list: list):
 
     all_data = dict(
         [
-            (instrument_code, pd_read_sql(f"SELECT * FROM [{instrument_code}]", engine1))
+            (instrument_code, pd_read_sql(instrument_code, engine1))
             for instrument_code in instr_list
         ]
     )
