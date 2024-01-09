@@ -9,10 +9,10 @@ def pd_read_sql(
     ins_code: str,
     engine,
         date_format=DEFAULT_DATE_FORMAT,
-        date_index_name: str="index",
+        date_index_name: str="Date",
 ) -> pd.DataFrame:
 
-    ans = pd.read_sql(f"SELECT * FROM {ins_code}", engine)
+    ans = pd.read_sql(ins_code, engine)
     ans.index = pd.to_datetime(ans[date_index_name], format=date_format).values
 
     del ans[date_index_name]
@@ -46,14 +46,14 @@ def get_data_dict_sql_no_carry(instr_list: list):
 
     all_data = dict(
         [
-            (instrument_code, pd_read_sql(instrument_code, engine1))
+            (instrument_code, pd_read_sql(f"SELECT * FROM [{instrument_code}]", engine1))
             for instrument_code in instr_list
         ]
     )
 
     all_data_carry = dict(
         [
-            (instrument_code, pd_read_sql(f"{instrument_code}_Carry", engine2))
+            (instrument_code, pd_read_sql(f"SELECT * FROM [{instrument_code}_Carry]", engine2))
             for instrument_code in instr_list
         ]
     )
@@ -71,7 +71,7 @@ def get_data_dict_sql_no_carry(instr_list: list):
             for instrument_code, data_for_instrument in all_data.items()
         ]
     )
-    return adjusted_prices, current_prices
+    return adjusted_prices, current_prices, 
 
 def get_data_dict_sql_carry(instr_list: list):
     driver = "ODBC Driver 18 for SQL Server"
@@ -103,9 +103,9 @@ def get_data_dict_sql_carry(instr_list: list):
         ]
     )
 
-    carry_data = dict(
+    all_data_carry = dict(
         [
-            (instrument_code, pd_read_sql(f"{instrument_code}_Carry", engine2))
+            (instrument_code, pd_read_sql(f"SELECT * FROM [{instrument_code}_Carry]", engine2))
             for instrument_code in instr_list
         ]
     )
@@ -124,4 +124,4 @@ def get_data_dict_sql_carry(instr_list: list):
         ]
     )
 
-    return adjusted_prices, current_prices, carry_data
+    return adjusted_prices, current_prices, all_data_carry
