@@ -53,8 +53,6 @@ def get_data_dict_with_carry(instrument_list: list = None):
 
     return adjusted_prices, current_prices, carry_data
 
-##print(get_data_dict_with_carry(['sp500']))
-##print(get_data_dict_with_carry(['gas']))
 
 def calc_idm(instrument_list: list) -> float:
 
@@ -89,7 +87,7 @@ def calc_idm(instrument_list: list) -> float:
     # if we reached here, something went wrong
     raise ValueError("Instrument Diversity Multiplier not found")   
 
-##print(calc_idm(['sp500', 'gas']))
+
 
 
 
@@ -164,6 +162,8 @@ risk_target_tau = 0.2
 
 even_weights = 1 / len(INSTRUMENT_LIST)
 weights = dict(sp500=even_weights, us5=even_weights, us10=even_weights)
+# dict of equal weight for each instrument in the list
+weights = {instrument: even_weights for instrument in INSTRUMENT_LIST}
 
 multipliers = getMultiplierDict()
 
@@ -173,13 +173,24 @@ carry_spans = [5,20,60,120]
 
 print(carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans))
 perc, buff_pos, capped_forecast = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
-##print(calculate_stats(perc))
 
-positions = pd.DataFrame.from_dict(buff_pos)
-positions.to_csv("TestCarryPositions.csv")
 
-returns = pd.DataFrame.from_dict(perc)
-returns.to_csv("TestcarryReturns.csv")
 
-capped_fc = pd.DataFrame.from_dict(capped_forecast)
-capped_fc.to_csv("TestcarryCappedForecasts.csv")
+capped_forecast = pd.DataFrame.from_dict(capped_forecast)
+# Pass forecast data frame to forecaster function which adds forecast column to each instrument in instrument list
+print(calculate_stats(perc['sp500']))
+print(capped_forecast)
+
+
+
+
+
+
+#positions = pd.DataFrame.from_dict(buff_pos)
+#positions.to_csv("TestCarryPositions.csv")
+
+#returns = pd.DataFrame.from_dict(perc)
+#returns.to_csv("TestcarryReturns.csv")
+
+#capped_fc = pd.DataFrame.from_dict(capped_forecast)
+#capped_fc.to_csv("TestcarryCappedForecasts.csv")
