@@ -53,7 +53,7 @@ def get_data_dict_sql_no_carry(instr_list: list):
 
     all_data_carry = dict(
         [
-            (instrument_code, pd_read_sql(f"SELECT * FROM [{instrument_code}]", engine2))
+            (instrument_code, pd_read_sql(f"{instrument_code}_Carry", engine2))
             for instrument_code in instr_list
         ]
     )
@@ -71,7 +71,7 @@ def get_data_dict_sql_no_carry(instr_list: list):
             for instrument_code, data_for_instrument in all_data.items()
         ]
     )
-    return adjusted_prices, current_prices, 
+    return adjusted_prices, current_prices
 
 def get_data_dict_sql_carry(instr_list: list):
     driver = "ODBC Driver 18 for SQL Server"
@@ -105,7 +105,7 @@ def get_data_dict_sql_carry(instr_list: list):
 
     carry_data = dict(
         [
-            (instrument_code, pd_read_sql(f"SELECT * FROM [{instrument_code}]", engine2))
+            (instrument_code, pd_read_sql(f"{instrument_code}_Carry", engine2))
             for instrument_code in instr_list
         ]
     )
