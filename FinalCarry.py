@@ -19,6 +19,7 @@ from Carry import calc_idm
 from get_SQL_functions import  get_data_dict_sql_carry
 
 
+
 def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipliers: dict, instr_list: list, carry_spans: list) -> tuple[dict, dict]:
    
     adjusted_prices_dict, current_prices_dict, carry_prices_dict = get_data_dict_sql_carry(instr_list)
@@ -29,7 +30,7 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
     
     instrument_weights = weights
     
-    cost_per_contract_dict = {instrument: 1 for instrument in INSTRUMENT_LIST}
+    cost_per_contract_dict = {instrument: 1 for instrument in instr_list}
 
     std_dev_dict = calculate_variable_standard_deviation_for_risk_targeting_from_dict(
         adjusted_prices=adjusted_prices_dict, current_prices=current_prices_dict
@@ -77,31 +78,19 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
     
     return perc_return_dict, position_contracts_dict, capped_forecast_dict
 
-
-# Server and database information - *update driver as needed*
+# How to get list of instruments #
 driver = 'ODBC Driver 18 for SQL Server'
 server = 'algo.database.windows.net'
 username = 'dbmaster'
 password = 'Password1'
-database1 = 'NG_Carver_Data'
-database2 = 'NG_Carver_Data_Carry'
-
-# Connection string for SQL Server Authentication - do not change
-params = urllib.parse.quote_plus(fr'DRIVER={driver};SERVER={server};DATABASE={database1};UID={username};PWD={password}')
-engine1 = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params)
-table_names_query = "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog='" + database1 + "'"
-table_names = pd.read_sql(table_names_query, engine1)['table_name'].tolist()
-
-# Connection string for SQL Server Authentication - do not change
-params2 = urllib.parse.quote_plus(fr'DRIVER={driver};SERVER={server};DATABASE={database2};UID={username};PWD={password}')
-engine2 = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params2)
-table_names_query2 = "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog='" + database2 + "'"
-table_names2 = pd.read_sql(table_names_query, engine2)['table_name'].tolist()
-
-# Inputs
-INSTRUMENT_LIST = pd.read_sql(table_names_query, engine1)['table_name'].tolist()
+database = 'NG_Carver_Data'
+params = urllib.parse.quote_plus(fr'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}')
+engine = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params)
+table_names_query = "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog='" + database + "'"
+INSTRUMENT_LIST = pd.read_sql(table_names_query, engine)['table_name'].tolist()
 
 
+# Capital, risk target, weights, multipliers, and carry spans
 capital = 500000
 
 risk_target_tau = 0.2
@@ -114,6 +103,5 @@ multipliers = getMultiplierDict()
 carry_spans = [5,20,60,120]
 
 
-#print(carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans))
-perc, buff_pos, capped_forecast = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
-print(perc)
+# Ouput
+perc_returns, positions, capped_forecasts = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
