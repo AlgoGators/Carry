@@ -33,8 +33,8 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
 
     instrument_weights = weights
 
-    for instrument in instr_list:
-        cost_per_contract_dict = dict(instrument=0.875)
+    # Initialize cost_per_contract_dict with the value 0.875 for all instruments
+    cost_per_contract_dict = {instrument: 0.875 for instrument in instr_list}
 
     std_dev_dict = calculate_variable_standard_deviation_for_risk_targeting_from_dict(
         adjusted_prices=adjusted_prices_dict, current_prices=current_prices_dict
@@ -87,7 +87,7 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
 # List of all instruments in the portfolio
 def main():
 
-    INSTRUMENT_LIST = ['CL', 'ES', 'GC', 'NG']
+    INSTRUMENT_LIST = ['CL', 'ES', 'GC']
 
     even_weights = 1 / len(INSTRUMENT_LIST)
 
