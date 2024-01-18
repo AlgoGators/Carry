@@ -2,9 +2,6 @@ import pandas as pd
 from sqlalchemy import create_engine
 import urllib
 
-from chapter1 import calculate_stats
-from chapter1 import BUSINESS_DAYS_IN_YEAR
-from chapter3 import standardDeviation
 from chapter4 import (
     create_fx_series_given_adjusted_prices_dict,
     calculate_variable_standard_deviation_for_risk_targeting_from_dict,
