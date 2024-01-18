@@ -16,25 +16,30 @@ from chapter10 import calculate_position_dict_with_multiple_carry_forecast_appli
 from GetMultpliers import getMultiplierDict
 from forecaster import calculate_capped_forecast
 from Carry import calc_idm
-from get_SQL_functions import  get_data_dict_sql_carry
+import get_SQL_functions as sql
+
 
 
 
 def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipliers: dict, instr_list: list, carry_spans: list) -> tuple[dict, dict]:
    
-    adjusted_prices_dict, current_prices_dict, carry_prices_dict = get_data_dict_sql_carry(instr_list)
+    adjusted_prices_dict, current_prices_dict = sql.get_data(instr_list)
+
+    carry_prices_dict = sql.get_carry_data(instr_list)
 
     fx_series_dict = create_fx_series_given_adjusted_prices_dict(adjusted_prices_dict)
 
     idm = calc_idm(instr_list)
-    
+
     instrument_weights = weights
-    
-    cost_per_contract_dict = {instrument: 1 for instrument in instr_list}
+
+    for instrument in instr_list:
+        cost_per_contract_dict = dict(instrument=0.875)
 
     std_dev_dict = calculate_variable_standard_deviation_for_risk_targeting_from_dict(
         adjusted_prices=adjusted_prices_dict, current_prices=current_prices_dict
     )
+
 
     average_position_contracts_dict = (
         calculate_position_series_given_variable_risk_for_dict(
@@ -78,30 +83,29 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
     
     return perc_return_dict, position_contracts_dict, capped_forecast_dict
 
-# How to get list of instruments #
-driver = 'ODBC Driver 18 for SQL Server'
-server = 'algo.database.windows.net'
-username = 'dbmaster'
-password = 'Password1'
-database = 'NG_Carver_Data'
-params = urllib.parse.quote_plus(fr'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}')
-engine = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params)
-table_names_query = "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog='" + database + "'"
-INSTRUMENT_LIST = pd.read_sql(table_names_query, engine)['table_name'].tolist()
 
+# List of all instruments in the portfolio
+def main():
 
-# Capital, risk target, weights, multipliers, and carry spans
-capital = 500000
+    INSTRUMENT_LIST = ['CL', 'ES', 'GC', 'NG']
 
-risk_target_tau = 0.2
+    even_weights = 1 / len(INSTRUMENT_LIST)
 
-even_weights = 1 / len(INSTRUMENT_LIST)
-weights = {instrument: even_weights for instrument in INSTRUMENT_LIST}
+    carry_spans = [5,20,60,120]
+    
+    # dict of equal weight for each instrument in the list
+    weights = {}
+    for instrument in INSTRUMENT_LIST:
+        weights[instrument] = even_weights
 
-multipliers = getMultiplierDict()
+    multipliers = getMultiplierDict()
+    risk_target_tau = 0.2
 
-carry_spans = [5,20,60,120]
+    capital = 100000
+    
+    perc_return, positions, capped_forecast = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
 
+    print(positions['ES'].tail())
 
-# Ouput
-perc_returns, positions, capped_forecasts = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
+if __name__ == '__main__':
+    main()

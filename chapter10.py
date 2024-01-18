@@ -250,10 +250,10 @@ def calculate_annualised_carry(
 ):
 
     ## will be reversed if price_contract > carry_contract
-    raw_carry = carry_price.PRICE - carry_price.CARRY
+    raw_carry = carry_price['PRICE'] - carry_price['CARRY']
     contract_diff = _total_year_frac_from_contract_series(
-        carry_price.CARRY_CONTRACT
-    ) - _total_year_frac_from_contract_series(carry_price.PRICE_CONTRACT)
+        carry_price['CARRY_CONTRACT'].astype(float)
+    ) - _total_year_frac_from_contract_series(carry_price['PRICE_CONTRACT'].astype(float))
 
     ann_carry = raw_carry / contract_diff
 
@@ -279,66 +279,3 @@ def _month_from_contract_series(x):
     return x.mod(10000) / 100.0
 
 
-if __name__ == "__main__":
-    ## Get the files from:
-    # https://gitfront.io/r/user-4000052/iTvUZwEUN2Ta/AFTS-CODE/blob/sp500.csv
-    # https://gitfront.io/r/user-4000052/iTvUZwEUN2Ta/AFTS-CODE/blob/sp500_carry.csv
-    # https://gitfront.io/r/user-4000052/iTvUZwEUN2Ta/AFTS-CODE/blob/gas_carry.csv
-    # https://gitfront.io/r/user-4000052/iTvUZwEUN2Ta/AFTS-CODE/blob/gas.csv
-    (
-        adjusted_prices_dict,
-        current_prices_dict,
-        carry_prices_dict,
-    ) = get_data_dict_with_carry()
-
-    multipliers = dict(sp500=5, gas=10000)
-    risk_target_tau = 0.2
-    fx_series_dict = create_fx_series_given_adjusted_prices_dict(adjusted_prices_dict)
-
-    capital = 2000000
-
-    idm = 1.5
-    instrument_weights = dict(sp500=0.5, gas=0.5)
-    cost_per_contract_dict = dict(sp500=0.875, gas=15.3)
-
-    std_dev_dict = calculate_variable_standard_deviation_for_risk_targeting_from_dict(
-        adjusted_prices=adjusted_prices_dict, current_prices=current_prices_dict
-    )
-
-    average_position_contracts_dict = (
-        calculate_position_series_given_variable_risk_for_dict(
-            capital=capital,
-            risk_target_tau=risk_target_tau,
-            idm=idm,
-            weights=instrument_weights,
-            std_dev_dict=std_dev_dict,
-            fx_series_dict=fx_series_dict,
-            multipliers=multipliers,
-        )
-    )
-
-    carry_spans = [5, 20, 60, 120]
-    position_contracts_dict = (
-        calculate_position_dict_with_multiple_carry_forecast_applied(
-            adjusted_prices_dict=adjusted_prices_dict,
-            carry_prices_dict=carry_prices_dict,
-            std_dev_dict=std_dev_dict,
-            average_position_contracts_dict=average_position_contracts_dict,
-            carry_spans=carry_spans,
-        )
-    )
-
-    buffered_position_dict = apply_buffering_to_position_dict(
-        position_contracts_dict=position_contracts_dict,
-        average_position_contracts_dict=average_position_contracts_dict,
-    )
-
-    perc_return_dict = calculate_perc_returns_for_dict_with_costs(
-        position_contracts_dict=buffered_position_dict,
-        fx_series=fx_series_dict,
-        multipliers=multipliers,
-        capital=capital,
-        adjusted_prices=adjusted_prices_dict,
-        cost_per_contract_dict=cost_per_contract_dict,
-        std_dev_dict=std_dev_dict,
-    )
