@@ -170,26 +170,24 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
     
     return perc_return_dict, buffered_position_dict, capped_forecast_dict
 
-INSTRUMENT_LIST = ['sp500', 'gas', 'us10']
+if __name__ == "__main__":
+    INSTRUMENT_LIST = ['sp500', 'gas', 'us10']
 
-capital = 400000
+    capital = 400000
 
-risk_target_tau = 0.2
+    risk_target_tau = 0.2
 
-even_weights = 1 / len(INSTRUMENT_LIST)
-# dict of equal weight for each instrument in the list
-weights = {instrument: even_weights for instrument in INSTRUMENT_LIST}
+    even_weights = 1 / len(INSTRUMENT_LIST)
+    # dict of equal weight for each instrument in the list
+    weights = {instrument: even_weights for instrument in INSTRUMENT_LIST}
 
-multipliers = getMultiplierDict()
+    multipliers = getMultiplierDict()
 
-carry_spans = [5,20,60,120]
-
-
-
-### Results ###
-perc, buff_pos, capped_forecast = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
-capped_forecast = pd.DataFrame.from_dict(capped_forecast)
-print(capped_forecast)
+    carry_spans = [5,20,60,120]
 
 
 
+    ### Results ###
+    perc, buff_pos, capped_forecast = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
+    capped_forecast = pd.DataFrame.from_dict(capped_forecast)
+    print(capped_forecast)
