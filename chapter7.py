@@ -6,17 +6,30 @@ matplotlib.use("TkAgg")
 from scipy.stats import linregress
 import pandas as pd
 
-from chapter1 import calculate_stats, MONTH, BUSINESS_DAYS_IN_YEAR
-from chapter3 import standardDeviation
-from chapter4 import (
-    get_data_dict,
-    calculate_variable_standard_deviation_for_risk_targeting_from_dict,
-    calculate_position_series_given_variable_risk_for_dict,
-    create_fx_series_given_adjusted_prices_dict,
-    aggregate_returns,
-)
-from chapter5 import ewmac, calculate_perc_returns_for_dict_with_costs
-from chapter6 import long_only_returns
+try:
+    from .chapter1 import calculate_stats, MONTH, BUSINESS_DAYS_IN_YEAR
+    from .chapter3 import standardDeviation
+    from .chapter4 import (
+        get_data_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+        create_fx_series_given_adjusted_prices_dict,
+        aggregate_returns,
+    )
+    from .chapter5 import ewmac, calculate_perc_returns_for_dict_with_costs
+    from .chapter6 import long_only_returns
+except ImportError:
+    from chapter1 import calculate_stats, MONTH, BUSINESS_DAYS_IN_YEAR
+    from chapter3 import standardDeviation
+    from chapter4 import (
+        get_data_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+        create_fx_series_given_adjusted_prices_dict,
+        aggregate_returns,
+    )
+    from chapter5 import ewmac, calculate_perc_returns_for_dict_with_costs
+    from chapter6 import long_only_returns
 
 
 def calculate_position_dict_with_trend_forecast_applied(

@@ -1,6 +1,10 @@
 import matplotlib
 import pandas as pd
-from chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR, calculate_perc_returns, calculate_stats, MONTH
+
+try:
+    from .chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR, calculate_perc_returns, calculate_stats, MONTH
+except ImportError:
+    from chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR, calculate_perc_returns, calculate_stats, MONTH
 
 matplotlib.use("TkAgg")
 

@@ -1,12 +1,22 @@
 import matplotlib
 import pandas as pd
 import numpy as np
-from chapter1 import pd_readcsv, calculate_stats, MONTH
-from chapter3 import (
-    standardDeviation,
-    calculate_position_series_given_variable_risk,
-    calculate_perc_returns,
-)
+
+try:
+    from .chapter1 import pd_readcsv, calculate_stats, MONTH
+    from .chapter3 import (
+        standardDeviation,
+        calculate_position_series_given_variable_risk,
+        calculate_perc_returns,
+    )
+except ImportError:
+    from chapter1 import pd_readcsv, calculate_stats, MONTH
+    from chapter3 import (
+        standardDeviation,
+        calculate_position_series_given_variable_risk,
+        calculate_perc_returns,
+    )
+
 matplotlib.use("TkAgg")
 INSTRUMENT_LIST = ["sp500", "us10"]
 

@@ -4,18 +4,30 @@ It then addds a forecast column to each instrument's .csv file in the data folde
 """
 import pandas as pd
 
-from chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
-from chapter3 import standardDeviation
-from chapter4 import (
-    create_fx_series_given_adjusted_prices_dict,
-    calculate_variable_standard_deviation_for_risk_targeting_from_dict,
-    calculate_position_series_given_variable_risk_for_dict,
-)
-
-from chapter5 import calculate_perc_returns_for_dict_with_costs
-from chapter8 import apply_buffering_to_position_dict
-from chapter10 import calculate_forecast_for_carry, calculate_annualised_carry, calculate_smoothed_carry,calculate_vol_adjusted_carry
-from chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied, calculate_combined_carry_forecast, get_data_dict_with_carry
+try:
+    from .chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
+    from .chapter3 import standardDeviation
+    from .chapter4 import (
+        create_fx_series_given_adjusted_prices_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+    )
+    from .chapter5 import calculate_perc_returns_for_dict_with_costs
+    from .chapter8 import apply_buffering_to_position_dict
+    from .chapter10 import calculate_forecast_for_carry, calculate_annualised_carry, calculate_smoothed_carry,calculate_vol_adjusted_carry
+    from .chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied, calculate_combined_carry_forecast, get_data_dict_with_carry
+except ImportError:
+    from chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
+    from chapter3 import standardDeviation
+    from chapter4 import (
+        create_fx_series_given_adjusted_prices_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+    )
+    from chapter5 import calculate_perc_returns_for_dict_with_costs
+    from chapter8 import apply_buffering_to_position_dict
+    from chapter10 import calculate_forecast_for_carry, calculate_annualised_carry, calculate_smoothed_carry,calculate_vol_adjusted_carry
+    from chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied, calculate_combined_carry_forecast, get_data_dict_with_carry
 
 
 INSTRUMENT_LIST = ['sp500', 'gas']

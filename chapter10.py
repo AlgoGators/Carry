@@ -4,15 +4,25 @@ import numpy as np
 matplotlib.use("TkAgg")
 
 import pandas as pd
-from chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
-from chapter3 import standardDeviation
-from chapter4 import (
-    create_fx_series_given_adjusted_prices_dict,
-    calculate_variable_standard_deviation_for_risk_targeting_from_dict,
-    calculate_position_series_given_variable_risk_for_dict,
-)
 
-from chapter5 import calculate_perc_returns_for_dict_with_costs
+try:
+    from .chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
+    from .chapter3 import standardDeviation
+    from .chapter4 import (
+        create_fx_series_given_adjusted_prices_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+    )
+    from .chapter5 import calculate_perc_returns_for_dict_with_costs
+except ImportError:
+    from chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
+    from chapter3 import standardDeviation
+    from chapter4 import (
+        create_fx_series_given_adjusted_prices_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+    )
+    from chapter5 import calculate_perc_returns_for_dict_with_costs
 
 def apply_buffering_to_position_dict(
     position_contracts_dict: dict, average_position_contracts_dict: dict

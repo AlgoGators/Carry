@@ -20,16 +20,26 @@ matplotlib.use("TkAgg")
 import pandas as pd
 import numpy as np
 
-from chapter1 import calculate_stats
-from chapter4 import (
-    get_data_dict,
-    create_fx_series_given_adjusted_prices_dict,
-    calculate_variable_standard_deviation_for_risk_targeting_from_dict,
-    calculate_position_series_given_variable_risk_for_dict,
-)
-
-from chapter5 import calculate_perc_returns_for_dict_with_costs
-from chapter7 import calculate_position_dict_with_trend_forecast_applied
+try:
+    from .chapter1 import calculate_stats
+    from .chapter4 import (
+        get_data_dict,
+        create_fx_series_given_adjusted_prices_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+    )
+    from .chapter5 import calculate_perc_returns_for_dict_with_costs
+    from .chapter7 import calculate_position_dict_with_trend_forecast_applied
+except ImportError:
+    from chapter1 import calculate_stats
+    from chapter4 import (
+        get_data_dict,
+        create_fx_series_given_adjusted_prices_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+    )
+    from chapter5 import calculate_perc_returns_for_dict_with_costs
+    from chapter7 import calculate_position_dict_with_trend_forecast_applied
 
 
 def apply_buffering_to_position_dict(

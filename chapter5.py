@@ -21,16 +21,26 @@ matplotlib.use("TkAgg")
 from copy import copy
 import pandas as pd
 
-from chapter1 import calculate_stats, BUSINESS_DAYS_IN_YEAR
-from chapter3 import standardDeviation
-from chapter4 import (
-    get_data_dict,
-    calculate_variable_standard_deviation_for_risk_targeting_from_dict,
-    calculate_position_series_given_variable_risk_for_dict,
-    create_fx_series_given_adjusted_prices_dict,
-    aggregate_returns,
-)
-
+try:
+    from .chapter1 import calculate_stats, BUSINESS_DAYS_IN_YEAR
+    from .chapter3 import standardDeviation
+    from .chapter4 import (
+        get_data_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+        create_fx_series_given_adjusted_prices_dict,
+        aggregate_returns,
+    )
+except ImportError:
+    from chapter1 import calculate_stats, BUSINESS_DAYS_IN_YEAR
+    from chapter3 import standardDeviation
+    from chapter4 import (
+        get_data_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+        create_fx_series_given_adjusted_prices_dict,
+        aggregate_returns,
+    )
 
 def calculate_position_dict_with_trend_filter_applied(
     adjusted_prices_dict: dict,

@@ -1,14 +1,25 @@
 import matplotlib
 from copy import copy
 import pandas as pd
-from chapter1 import (
-    pd_readcsv,
-    BUSINESS_DAYS_IN_YEAR,
-    calculate_perc_returns,
-    calculate_stats,
-    MONTH,
-)
-from chapter2 import calculate_minimum_capital
+
+try:
+    from .chapter1 import (
+        pd_readcsv,
+        BUSINESS_DAYS_IN_YEAR,
+        calculate_perc_returns,
+        calculate_stats,
+        MONTH,
+    )
+    from .chapter2 import calculate_minimum_capital
+except ImportError:
+    from chapter1 import (
+        pd_readcsv,
+        BUSINESS_DAYS_IN_YEAR,
+        calculate_perc_returns,
+        calculate_stats,
+        MONTH,
+    )
+    from chapter2 import calculate_minimum_capital
 
 matplotlib.use("TkAgg")
 

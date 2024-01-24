@@ -1,20 +1,37 @@
 import pandas as pd
-from chapter1 import pd_readcsv
-from chapter1 import calculate_stats
-from chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
-from chapter3 import standardDeviation
-from chapter4 import (
-    create_fx_series_given_adjusted_prices_dict,
-    calculate_variable_standard_deviation_for_risk_targeting_from_dict,
-    calculate_position_series_given_variable_risk_for_dict,
-)
 
-from chapter5 import calculate_perc_returns_for_dict_with_costs
-from chapter8 import apply_buffering_to_position_dict
-from chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied
-from GetMultpliers import getMultiplierDict
-from forecaster import calculate_capped_forecast
+try:
+    from .chapter1 import pd_readcsv
+    from .chapter1 import calculate_stats
+    from .chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
+    from .chapter3 import standardDeviation
+    from .chapter4 import (
+        create_fx_series_given_adjusted_prices_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+    )
 
+    from .chapter5 import calculate_perc_returns_for_dict_with_costs
+    from .chapter8 import apply_buffering_to_position_dict
+    from .chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied
+    from .GetMultpliers import getMultiplierDict
+    from .forecaster import calculate_capped_forecast
+except ImportError:
+    from chapter1 import pd_readcsv
+    from chapter1 import calculate_stats
+    from chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
+    from chapter3 import standardDeviation
+    from chapter4 import (
+        create_fx_series_given_adjusted_prices_dict,
+        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
+        calculate_position_series_given_variable_risk_for_dict,
+    )
+
+    from chapter5 import calculate_perc_returns_for_dict_with_costs
+    from chapter8 import apply_buffering_to_position_dict
+    from chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied
+    from GetMultpliers import getMultiplierDict
+    from forecaster import calculate_capped_forecast
 
 ## Get underlying price, adjusted price, and carry price
 def get_data_dict_with_carry(instrument_list: list = None):
