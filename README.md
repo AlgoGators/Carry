@@ -1,8 +1,6 @@
 # Carry
+Using formula's provided by Carver in chapters 5-9, we create a multiple trend following strategy that returns a forecast.
 
-The purpose of this repository is to:
-
-1. Provide a visual representation of Carver's Carry Strategy.
-2. Redefine Carver's existing Carry python code.
+$N_(i,t) = \bf(CCF) \cdot Capital \cdot IDM \cdot Weight_i \cdot \tau \div (10 \cdot Multiplier_i \cdot Price \cdot FX \cdot \sigma ) $
 
 
