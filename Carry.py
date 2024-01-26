@@ -1,7 +1,7 @@
 import pandas as pd
 
 try:
-    from . import sql_functions as sql
+    from . import get_carry_sql_functions as sql
     from .fx_functions import create_fx_series_given_adjusted_prices_dict
     from .risk_functions import calculate_variable_standard_deviation_for_risk_targeting_from_dict
     from .risk_functions import calculate_position_series_given_variable_risk_for_dict
@@ -48,7 +48,7 @@ def calc_idm(instrument_list: list) -> float:
     # if we reached here, something went wrong
     raise ValueError("Instrument Diversity Multiplier not found")
 
-def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipliers: dict, instr_list: list, carry_spans: list) -> tuple[dict, dict]:
+def carry_forecast(instr_list: list, weights: dict, capital: int, risk_target_tau: float, multipliers: dict, carry_spans: list) :
    
     adjusted_prices_dict, current_prices_dict = sql.get_data(instr_list)
 
@@ -67,7 +67,6 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
     std_dev_dict = calculate_variable_standard_deviation_for_risk_targeting_from_dict(
         adjusted_prices=adjusted_prices_dict, current_prices=current_prices_dict
     )
-
 
     average_position_contracts_dict = (
         calculate_position_series_given_variable_risk_for_dict(
@@ -95,7 +94,6 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
         position_contracts_dict=position_contracts_dict,
         average_position_contracts_dict=average_position_contracts_dict,
     )
-
 
     perc_return_dict = calculate_perc_returns_for_dict_with_costs(
         position_contracts_dict=position_contracts_dict,
@@ -134,9 +132,11 @@ def main():
     multipliers = getMultiplierDict()
     risk_target_tau = 0.2
 
+    carry_spans = [5,20,60,120]
+
     capital = 400000
 
-    buffered_pos, pos = carry_forecast(all_instruments, weights, capital, risk_target_tau, multipliers, [16, 32, 64])
+    buffered_pos, pos = carry_forecast(instr_list: list, weights: dict, capital: int, risk_target_tau: float, multipliers: dict, carry_spans: list) 
 
     for code in sorted(pos.keys()):
         print(code)
