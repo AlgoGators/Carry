@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 try:
     from .risk_functions import standardDeviation
