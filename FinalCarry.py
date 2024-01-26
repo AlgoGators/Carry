@@ -1,8 +1,10 @@
 import pandas as pd
+from enum import Enum
 from sqlalchemy import create_engine
 import urllib
 
 try:
+    from chapter1 import calculate_stats
     from .chapter4 import (
         create_fx_series_given_adjusted_prices_dict,
         calculate_variable_standard_deviation_for_risk_targeting_from_dict,
@@ -98,7 +100,8 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
 # List of all instruments in the portfolio
 def main():
 
-    INSTRUMENT_LIST = ['CL', 'ES', 'GC']
+    # ZS doesn't work
+    INSTRUMENT_LIST = ['FCE', '6C', '6S', 'CT', 'LRC', 'FDAX', '6E', '6B', 'GF', 'HE', '6J', 'KC', 'KE', 'LE', 'RTY', '6A', 'WBS','ES', 'GC', 'HG', 'NQ', 'RB', '6M', 'YM', '6N', 'PL', 'SB', 'SI', 'FSMI', 'UB', 'VX', 'LSU', 'SCN', 'ZW', 'ZC', 'ZL', 'ZM', 'ZN', 'ZR']
 
     even_weights = 1 / len(INSTRUMENT_LIST)
 
@@ -112,11 +115,12 @@ def main():
     multipliers = getMultiplierDict()
     risk_target_tau = 0.2
 
-    capital = 100000
+    capital = 50000000
     
-    perc_return, positions, capped_forecast = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
+    perc_return_dict, positions, capped_forecast = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
+    
 
-    print(positions['ES'].tail())
+    print(positions['GC'].tail())
 
 if __name__ == '__main__':
     main()
