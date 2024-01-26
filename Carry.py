@@ -136,7 +136,7 @@ def main():
 
     capital = 400000
 
-    buffered_pos, pos = carry_forecast((all_instruments, weights, capital, risk_target_tau, multipliers, carry_spans)
+    buffered_pos, pos = carry_forecast(all_instruments, weights, capital, risk_target_tau, multipliers, carry_spans)
 
     for code in sorted(pos.keys()):
         print(code)
