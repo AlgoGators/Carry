@@ -5,7 +5,7 @@ try:
     from .fx_functions import create_fx_series_given_adjusted_prices_dict
     from .risk_functions import calculate_variable_standard_deviation_for_risk_targeting_from_dict
     from .risk_functions import calculate_position_series_given_variable_risk_for_dict
-    from .carry_functions import calculate_position_dict_with_multiple_carry_forecast_applied, apply_buffering_to_position_dict, calculate_perc_returns_for_dict_with_costs
+    from .carry_functions import calculate_position_dict_with_multiple_carry_forecast_applied, apply_buffering_to_position_dict, calculate_perc_returns_for_dict_with_costs, calculate_capped_forecast
     from .getMultiplierDict import getMultiplierDict
 except ImportError:
     import get_carry_sql_functions as sql
