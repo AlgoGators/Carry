@@ -1,3 +1,4 @@
+
 import pandas as pd
 
 try:
@@ -48,11 +49,7 @@ def calc_idm(instrument_list: list) -> float:
     # if we reached here, something went wrong
     raise ValueError("Instrument Diversity Multiplier not found")
 
-def carry_forecast(instr_list: list, weights: dict, capital: int, risk_target_tau: float, multipliers: dict, carry_spans: list) :
-   
-    adjusted_prices_dict, current_prices_dict = sql.get_data(instr_list)
-
-    carry_prices_dict = sql.get_carry_data(instr_list)
+def carry_forecast(instr_list: list, weights: dict, capital: int, risk_target_tau: float, multipliers: dict, carry_spans: list, adjusted_prices_dict, current_prices_dict, carry_prices_dict) :
 
     fx_series_dict = create_fx_series_given_adjusted_prices_dict(adjusted_prices_dict)
 
@@ -121,6 +118,10 @@ def main():
     symbols = pd.read_csv('Symbols.csv')
     all_instruments = symbols['Code'].to_list()
 
+    adjusted_prices_dict, current_prices_dict = sql.get_data(instruments)
+
+    carry_prices_dict = sql.get_carry_data(instruments)
+
     even_weights = 1 / len(all_instruments)
 
     
@@ -136,7 +137,8 @@ def main():
 
     capital = 400000
 
-    buffered_pos, pos = carry_forecast(all_instruments, weights, capital, risk_target_tau, multipliers, carry_spans)
+    buffered_pos, pos = carry_forecast(all_instruments, weights, capital, risk_target_tau, multipliers, carry_spans, adjusted_prices_dict=adjusted_prices_dict,
+                                       current_prices_dict=current_prices_dict, carry_prices_dict=carry_prices_dict)
 
     for code in sorted(pos.keys()):
         print(code)
