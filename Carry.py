@@ -114,7 +114,7 @@ def carry_forecast(instr_list: list, weights: dict, capital: int, risk_target_ta
 # List of all instruments in the portfolio
 def main():
 
-    instruments = ['CL', 'ES', 'GC', 'HG', 'HO', 'NG', 'RB', 'SI']
+    instruments = ['CL', 'ES', 'GC', 'HG', 'HO', 'RB', 'SI']
     symbols = pd.read_csv('Symbols.csv')
     all_instruments = symbols['Code'].to_list()
 
