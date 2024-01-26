@@ -4,7 +4,6 @@ from sqlalchemy import create_engine
 import urllib
 
 try:
-    from chapter1 import calculate_stats
     from .chapter4 import (
         create_fx_series_given_adjusted_prices_dict,
         calculate_variable_standard_deviation_for_risk_targeting_from_dict,
@@ -13,10 +12,10 @@ try:
 
     from .chapter5 import calculate_perc_returns_for_dict_with_costs
     from .chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied
-    from .GetMultpliers import getMultiplierDict
+    from .getMultplierDict import getMultiplierDict
     from .forecaster import calculate_capped_forecast
-    from .Carry import calc_idm
-    from . import get_SQL_functions as sql
+    from .V1Carry import calc_idm
+    from . import get_carry_SQL_functions as sql
 except ImportError:
     from chapter4 import (
         create_fx_series_given_adjusted_prices_dict,
@@ -26,10 +25,9 @@ except ImportError:
 
     from chapter5 import calculate_perc_returns_for_dict_with_costs
     from chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied
-    from GetMultpliers import getMultiplierDict
     from forecaster import calculate_capped_forecast
-    from Carry import calc_idm
-    import get_SQL_functions as sql
+    from V1Carry import calc_idm
+    import get_carry_SQL_functions as sql
 
 
 

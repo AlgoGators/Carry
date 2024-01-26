@@ -1,75 +1,19 @@
 import pandas as pd
 
 try:
-    from .chapter1 import pd_readcsv
-    from .chapter1 import calculate_stats
-    from .chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
-    from .chapter3 import standardDeviation
-    from .chapter4 import (
-        create_fx_series_given_adjusted_prices_dict,
-        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
-        calculate_position_series_given_variable_risk_for_dict,
-    )
-
-    from .chapter5 import calculate_perc_returns_for_dict_with_costs
-    from .chapter8 import apply_buffering_to_position_dict
-    from .chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied
-    from .GetMultpliers import getMultiplierDict
-    from .forecaster import calculate_capped_forecast
+    from . import sql_functions as sql
+    from .fx_functions import create_fx_series_given_adjusted_prices_dict
+    from .risk_functions import calculate_variable_standard_deviation_for_risk_targeting_from_dict
+    from .risk_functions import calculate_position_series_given_variable_risk_for_dict
+    from .carry_functions import calculate_position_dict_with_multiple_carry_forecast_applied, apply_buffering_to_position_dict, calculate_perc_returns_for_dict_with_costs
+    from .getMultiplierDict import getMultiplierDict
 except ImportError:
-    from chapter1 import pd_readcsv
-    from chapter1 import calculate_stats
-    from chapter1 import pd_readcsv, BUSINESS_DAYS_IN_YEAR
-    from chapter3 import standardDeviation
-    from chapter4 import (
-        create_fx_series_given_adjusted_prices_dict,
-        calculate_variable_standard_deviation_for_risk_targeting_from_dict,
-        calculate_position_series_given_variable_risk_for_dict,
-    )
-
-    from chapter5 import calculate_perc_returns_for_dict_with_costs
-    from chapter8 import apply_buffering_to_position_dict
-    from chapter10 import calculate_position_dict_with_multiple_carry_forecast_applied
-    from GetMultpliers import getMultiplierDict
-    from forecaster import calculate_capped_forecast
-
-## Get underlying price, adjusted price, and carry price
-def get_data_dict_with_carry(instrument_list: list = None):
-    
-    if instrument_list is None:
-        instrument_list = INSTRUMENT_LIST
-
-    all_data = dict(
-        [
-            (instrument_code, pd_readcsv("%s.csv" % instrument_code))
-            for instrument_code in instrument_list
-        ]
-    )
-
-    adjusted_prices = dict(
-        [
-            (instrument_code, data_for_instrument.adjusted)
-            for instrument_code, data_for_instrument in all_data.items()
-        ]
-    )
-
-    current_prices = dict(
-        [
-            (instrument_code, data_for_instrument.underlying)
-            for instrument_code, data_for_instrument in all_data.items()
-        ]
-    )
-
-    carry_data = dict(
-        [
-            (instrument_code, pd_readcsv("%s_carry.csv" % instrument_code))
-            for instrument_code in instrument_list
-        ]
-    )
-
-
-    return adjusted_prices, current_prices, carry_data
-
+    import get_carry_sql_functions as sql
+    from fx_functions import create_fx_series_given_adjusted_prices_dict
+    from risk_functions import calculate_variable_standard_deviation_for_risk_targeting_from_dict
+    from risk_functions import calculate_position_series_given_variable_risk_for_dict
+    from carry_functions import calculate_position_dict_with_multiple_carry_forecast_applied, apply_buffering_to_position_dict, calculate_perc_returns_for_dict_with_costs, calculate_capped_forecast
+    from getMultiplierDict import getMultiplierDict
 
 def calc_idm(instrument_list: list) -> float:
 
@@ -102,27 +46,28 @@ def calc_idm(instrument_list: list) -> float:
         return 2.50
 
     # if we reached here, something went wrong
-    raise ValueError("Instrument Diversity Multiplier not found")   
-
-
-
-
+    raise ValueError("Instrument Diversity Multiplier not found")
 
 def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipliers: dict, instr_list: list, carry_spans: list) -> tuple[dict, dict]:
    
-    adjusted_prices_dict, current_prices_dict, carry_prices_dict = get_data_dict_with_carry(instr_list)
+    adjusted_prices_dict, current_prices_dict = sql.get_data(instr_list)
+
+    carry_prices_dict = sql.get_carry_data(instr_list)
 
     fx_series_dict = create_fx_series_given_adjusted_prices_dict(adjusted_prices_dict)
-    
+
     idm = calc_idm(instr_list)
-    
+
     instrument_weights = weights
-    
-    cost_per_contract_dict = dict(sp500=0.875, gas = 1, us10 = 1)
+
+    # cost per contract is set to $3 both ways so $6 total
+    # Initialize cost_per_contract_dict with the value 3 for all instruments
+    cost_per_contract_dict = {instrument: 6 for instrument in instr_list}
 
     std_dev_dict = calculate_variable_standard_deviation_for_risk_targeting_from_dict(
         adjusted_prices=adjusted_prices_dict, current_prices=current_prices_dict
     )
+
 
     average_position_contracts_dict = (
         calculate_position_series_given_variable_risk_for_dict(
@@ -151,8 +96,9 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
         average_position_contracts_dict=average_position_contracts_dict,
     )
 
+
     perc_return_dict = calculate_perc_returns_for_dict_with_costs(
-        position_contracts_dict=buffered_position_dict,
+        position_contracts_dict=position_contracts_dict,
         fx_series=fx_series_dict,
         multipliers=multipliers,
         capital=capital,
@@ -168,26 +114,35 @@ def carry_forecast(capital: int, risk_target_tau: float, weights: dict, multipli
         carry_spans,
         )
     
-    return perc_return_dict, buffered_position_dict, capped_forecast_dict
+    return [buffered_position_dict, position_contracts_dict]
 
-if __name__ == "__main__":
-    INSTRUMENT_LIST = ['sp500', 'gas', 'us10']
+# List of all instruments in the portfolio
+def main():
+
+    instruments = ['CL', 'ES', 'GC', 'HG', 'HO', 'NG', 'RB', 'SI']
+    symbols = pd.read_csv('Symbols.csv')
+    all_instruments = symbols['Code'].to_list()
+
+    even_weights = 1 / len(all_instruments)
+
+    
+    # dict of equal weight for each instrument in the list
+    weights = {}
+    for code in all_instruments:
+        weights[code] = even_weights
+
+    multipliers = getMultiplierDict()
+    risk_target_tau = 0.2
 
     capital = 400000
 
-    risk_target_tau = 0.2
+    buffered_pos, pos = carry_forecast(all_instruments, weights, capital, risk_target_tau, multipliers, [16, 32, 64])
 
-    even_weights = 1 / len(INSTRUMENT_LIST)
-    # dict of equal weight for each instrument in the list
-    weights = {instrument: even_weights for instrument in INSTRUMENT_LIST}
+    for code in sorted(pos.keys()):
+        print(code)
+        print(pos[code].tail())
+    print(len(pos))
 
-    multipliers = getMultiplierDict()
+if __name__ == '__main__':
+    main()
 
-    carry_spans = [5,20,60,120]
-
-
-
-    ### Results ###
-    perc, buff_pos, capped_forecast = carry_forecast(capital, risk_target_tau, weights, multipliers, INSTRUMENT_LIST, carry_spans)
-    capped_forecast = pd.DataFrame.from_dict(capped_forecast)
-    print(capped_forecast)
