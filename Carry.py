@@ -6,14 +6,14 @@ try:
     from .fx_functions import create_fx_series_given_adjusted_prices_dict
     from .risk_functions import calculate_variable_standard_deviation_for_risk_targeting_from_dict
     from .risk_functions import calculate_position_series_given_variable_risk_for_dict
-    from .carry_functions import calculate_position_dict_with_multiple_carry_forecast_applied, apply_buffering_to_position_dict, calculate_perc_returns_for_dict_with_costs, calculate_capped_forecast
+    from .carry_functions import calculate_position_dict_with_multiple_carry_forecast_applied, apply_buffering_to_position_dict, calculate_capped_forecast
     from .getMultiplierDict import getMultiplierDict
 except ImportError:
     import get_carry_sql_functions as sql
     from fx_functions import create_fx_series_given_adjusted_prices_dict
     from risk_functions import calculate_variable_standard_deviation_for_risk_targeting_from_dict
     from risk_functions import calculate_position_series_given_variable_risk_for_dict
-    from carry_functions import calculate_position_dict_with_multiple_carry_forecast_applied, apply_buffering_to_position_dict, calculate_perc_returns_for_dict_with_costs, calculate_capped_forecast
+    from carry_functions import calculate_position_dict_with_multiple_carry_forecast_applied, apply_buffering_to_position_dict, calculate_capped_forecast
     from getMultiplierDict import getMultiplierDict
 
 def calc_idm(instrument_list: list) -> float:
@@ -92,15 +92,15 @@ def carry_forecast(instr_list: list, weights: dict, capital: int, risk_target_ta
         average_position_contracts_dict=average_position_contracts_dict,
     )
 
-    perc_return_dict = calculate_perc_returns_for_dict_with_costs(
-        position_contracts_dict=position_contracts_dict,
-        fx_series=fx_series_dict,
-        multipliers=multipliers,
-        capital=capital,
-        adjusted_prices=adjusted_prices_dict,
-        cost_per_contract_dict=cost_per_contract_dict,
-        std_dev_dict=std_dev_dict,
-    )
+    #perc_return_dict = calculate_perc_returns_for_dict_with_costs(
+       # position_contracts_dict=position_contracts_dict,
+        #fx_series=fx_series_dict,
+        #multipliers=multipliers,
+        #capital=capital,
+        #adjusted_prices=adjusted_prices_dict,
+        #cost_per_contract_dict=cost_per_contract_dict,
+        #std_dev_dict=std_dev_dict,
+    #)
 
     capped_forecast_dict = calculate_capped_forecast(
         adjusted_prices_dict, 
@@ -114,7 +114,7 @@ def carry_forecast(instr_list: list, weights: dict, capital: int, risk_target_ta
 # List of all instruments in the portfolio
 def main():
 
-    instruments = ['CL', 'ES', 'GC', 'HG', 'HO', 'RB', 'SI']
+    instruments = ['ES', 'RB', 'ZS', 'ZL']
     symbols = pd.read_csv('Symbols.csv')
     all_instruments = symbols['Code'].to_list()
 
