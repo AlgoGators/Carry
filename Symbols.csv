@@ -1,110 +1,41 @@
-Name,Code,Exchange,Group,Contract Size,Quotation,Tick Size,Tick Value,Point Value,Currency,Margin,No Trade,Last Trading Day,First Notice Day
-Eastern Australia Feed Barley,AFB,Australian Securities Exchange,Agriculture & Livestock,20 metric tonnes,cents per tonne,AUD $0.10 per tonne,2.0,20.0,AUD,553,,The third Thursday of the contract month,The second business day of the contract month
-Eastern Australia Wheat,AWM,Australian Securities Exchange,Agriculture & Livestock,20 metric tonnes,cents per tonne,AUD $0.10 per tonne,2.0,20.0,AUD,756,,The third Thursday of the delivery month,The second business day of the contract month
-Cocoa,CC,ICE Futures US,Agriculture & Livestock,10 metric tons,dollars per metric ton,1 dollar,10.0,10.0,USD,1430,,Eleven business days prior to the last business day of the delivery month.,Ten business days prior to the first business day of the delivery month.
-Cotton No. 2,CT,ICE Futures US,Agriculture & Livestock,50000 pounds,cents per pound,0.01 of a cent,5.0,500.0,USD,3375,,Seventeen business days before the end of the delivery month.,Five business days prior to the first business day of the delivery month.
-Class III Milk,DC,Chicago Mercantile Exchange (CME Group),Agriculture & Livestock,200000 pounds of Class III milk,dollars and cents per cwt,1 cent per cwt,20.0,2000.0,USD,1650,,The business day prior to the monthly Milk price announcement by the USDA.,
-Feeder Cattle,GF,Chicago Mercantile Exchange (CME Group),Agriculture & Livestock,50000 pounds,cents per pound,0.025 of a cent,12.5,500.0,USD,3465,,"1. The November contract shall terminate on the Thursday prior to Thanksgiving Day, unless a holiday falls on that Thursday or on any of the four weekdays prior to that Thursday, in which case trading shall terminate on the first prior Thursday that is not a holiday and is not so preceded by a
-holiday. Weekdays shall be defined as Monday, Tuesday, Wednesday, Thursday and Friday.
-2. Any contract month in which a holiday falls on the last Thursday of the month or on any of the four weekdays prior to that Thursday shall terminate on the first prior Thursday that is not a holiday and is not so preceded by a holiday.",
-Lean Hogs,HE,Chicago Mercantile Exchange (CME Group),Agriculture & Livestock,40000 pounds,cents per pound,0.025 of a cent,10.0,400.0,USD,1925,,The tenth business day of the contract month.,
-Coffee C,KC,ICE Futures US,Agriculture & Livestock,37500 pounds,cents per pound,0.05 of a cent,18.75,375.0,USD,5250,,Eight business days prior to the last business day of the delivery month.,Seven business days prior to the first business day of the delivery month.
-KC HRW Wheat,KE,Kansas City Board of Trade (CME Group),Agriculture & Livestock,5000 bushels,cents per bushel,2/8ths of a cent,12.5,50.0,USD,3740,,The business day preceding the 15th calendar day of the delivery month.,The business day preceding the first business day of the delivery month.
-Random Length Lumber,LBS,Chicago Mercantile Exchange (CME Group),Agriculture & Livestock,110000 board feet,dollars and cents per 1000 board feet,10 cents,11.0,110.0,USD,5940,,The business day prior to the sixteenth calendar day of the delivery month,
-London Cocoa,LCC,ICE Futures Europe,Agriculture & Livestock,10 Tonnes,pounds sterling per tonne,1 pound sterling,10.0,10.0,GBP,1510,,Eleven business days prior to the last business day of the delivery month.,
-Live Cattle,LE,Chicago Mercantile Exchange (CME Group),Agriculture & Livestock,40000 pounds,cents per pound,0.025 of a cent,10.0,400.0,USD,2035,,The last business day of the delivery month,The first business day following the first Friday of the delivery month.
-Robusta Coffee 10 Tonne,LRC,ICE Futures Europe,Agriculture & Livestock,10 Tonnes,dollars per tonne,1 dollar,10.0,10.0,USD,1820,,The fourth business day preceding the last business day of the delivery month,The fourth business day preceding the first business day of the delivery month
-White Sugar,LSU,ICE Futures Europe,Agriculture & Livestock,50 Tonnes,dollars and cents per tonne,10 cents,5.0,50.0,USD,2229,,Sixteen calendar days preceding the first day of the delivery month,
-Feed Wheat,LWB,ICE Futures Europe,Agriculture & Livestock,100 Tonnes,pounds sterling and pence per tonne,5 pence,5.0,100.0,GBP,1851,,"23rd calendar day of the delivery month, except for the July delivery, which is the 7th calendar day","First tender day, which is the second business day after Christmas for January delivery, or seventh calendar day prior to first business day of delivery month."
-Hard Red Spring Wheat,MWE,Minneapolis Grain Exchange,Agriculture & Livestock,5000 bushels,cents per bushel,2/8ths of a cent,12.5,50.0,USD,3000,,The business day preceding the 15th calendar day of the delivery month.,The last business day of the month preceding the delivery month
-Frozen Concentrated Orange Juice Grade A,OJ,ICE Futures US,Agriculture & Livestock,15000 pounds,cents per pound,0.05 of a cent,7.5,150.0,USD,3450,,14 business days prior to the last business day of the delivery month.,First business day of the delivery month.
-Canola,RS,ICE Futures US,Agriculture & Livestock,20 metric tonnes,dollars and cents per tonne,10 cents,2.0,20.0,CAD,880,,The business day preceding the 15th calendar day of the delivery month.,Last business day of month preceding contract month.
-Sugar No. 11,SB,ICE Futures US,Agriculture & Livestock,112000 pounds,cents per pound,0.01 of a cent,11.2,1120.0,USD,1344,,Last business day of the month preceding the delivery month.,
-Corn,ZC,Chicago Board of Trade (CME Group),Agriculture & Livestock,5000 bushels,cents per bushel,2/8ths of a cent,12.5,50.0,USD,2805,,The business day prior to the 15th calendar day of the contract month.,Last business day of month preceding contract month
-Soybean Oil,ZL,Chicago Board of Trade (CME Group),Agriculture & Livestock,60000 pounds,cents per pound,0.01 of cent,6.0,600.0,USD,3465,,The business day prior to the 15th calendar day of the contract month.,Last business day of month preceding contract month.
-Soybean Meal,ZM,Chicago Board of Trade (CME Group),Agriculture & Livestock,100 tons,dollars and cents per ton,10 cents,10.0,100.0,USD,3410,,The business day prior to the 15th calendar day of the contract month.,Last business day of month preceding contract month.
-Oats,ZO,Chicago Board of Trade (CME Group),Agriculture & Livestock,5000 bushels,cents per bushel,2/8ths of a cent,12.5,50.0,USD,1980,,The business day prior to the 15th calendar day of the contract month.,Last business day of month preceding contract month.
-Rough Rice,ZR,Chicago Board of Trade (CME Group),Agriculture & Livestock,2000 hundredweight,cents per hundredweight,0.5 a cent,10.0,20.0,USD,1848,,The business day prior to the 15th calendar day of the delivery month.,Last business day of month preceding contract month.
-Soybean,ZS,Chicago Board of Trade (CME Group),Agriculture & Livestock,5000 bushels,cents per bushel,2/8ths of a cent,12.5,50.0,USD,4620,,The business day prior to the 15th calendar day of the contract month.,Last business day of month preceding contract month.
-Chicago SRW Wheat,ZW,Chicago Board of Trade (CME Group),Agriculture & Livestock,5000 bushels,cents per bushel,2/8ths of a cent,12.5,50.0,USD,3630,,The business day prior to the 15th calendar day of the contract month.,Last business day of month preceding contract month.
-EUA,EUA,ICE Futures Europe,Commodity Index,1000 CO2 EU Allowances,euro and euro cents per metric tonne,1 euro cent,10.0,1000.0,EUR,10250,,The last Monday of the contract month,
-S&P GSCI,GD,Chicago Mercantile Exchange (CME Group),Commodity Index,$250 x the S&P Goldman Sachs Commodity Index,index points,0.05 of a point,12.5,250.0,USD,11000,,The eleventh business day of the contract month,
-Australian Dollar,6A,Chicago Mercantile Exchange (CME Group),Currency,100000 Australian Dollars,U.S. Dollars per Australian Dollar,0.00005 of a dollar,5.0,100000.0,USD,1870,,The second business day before the third Wednesday of the delivery month,
-British Pound,6B,Chicago Mercantile Exchange (CME Group),Currency,62500 British Pounds,U.S. Dollars per British Pound,0.0001 of a dollar,6.25,62500.0,USD,2750,,The second business day before the third Wednesday of the delivery month,
-Canadian Dollar,6C,Chicago Mercantile Exchange (CME Group),Currency,100000 Canadian Dollars,U.S. Dollars per Canadian Dollar,0.00005 of a dollar,5.0,100000.0,USD,1375,,The business day before the third Wednesday of the delivery month,
-Euro FX,6E,Chicago Mercantile Exchange (CME Group),Currency,125000 Euros,U.S. Dollars per Euro,0.00005 of a dollar,6.25,125000.0,USD,2640,,The second business day before the third Wednesday of the delivery month,
-Japanese Yen,6J,Chicago Mercantile Exchange (CME Group),Currency,12500000 Japanese Yen,U.S. Dollars per 100 Japanese Yen,0.00005 of a dollar,6.25,125000.0,USD,3630,,The second business day before the third Wednesday of the delivery month,
-Mexican Peso,6M,Chicago Mercantile Exchange (CME Group),Currency,500000 Mexican Pesos,U.S. Dollars per Mexican Peso,0.00001 of a dollar,5.0,500000.0,USD,1540,,The second business day before the third Wednesday of the delivery month,
-New Zealand Dollar,6N,Chicago Mercantile Exchange (CME Group),Currency,100000 New Zealand Dollars,U.S. Dollars per New Zealand Dollar,0.00005 of a dollar,5.0,100000.0,USD,1680,,The second business day before the third Wednesday of the delivery month,
-Swiss Franc,6S,Chicago Mercantile Exchange (CME Group),Currency,125000 Swiss Francs,U.S. Dollars per Swiss Franc,0.00005 of a dollar,6.25,125000.0,USD,4510,,The second business day before the third Wednesday of the delivery month,
-Bitcoin,BTC,Chicago Mercantile Exchange (CME Group),Currency,5 bitcoin,USD per BTC,5 points,25.0,5.0,USD,41800,,Last Friday of the contract month,
-US Dollar Index,DX,ICE Futures US,Currency,$1000 x the value of the U.S. Dollar Index,index points,0.001 of a point,1.0,1000.0,USD,2200,,The second business day prior to the third Wednesday of the delivery month.,
-Ether,ETH,Chicago Mercantile Exchange (CME Group),Currency,50 Ether,USD per ETH,50 cents,25.0,50.0,USD,28380,,Last Friday of the contract month,
-Micro Bitcoin,MBT,Chicago Mercantile Exchange (CME Group),Currency,0.10 bitcoin,USD per BTC,5 points,0.5,0.1,USD,836,,Last Friday of the contract month,
-Micro Ether,MET,Chicago Mercantile Exchange (CME Group),Currency,0.1 Index Points,USD per Index Point,0.05 cents,0.05,0.1,USD,57,,Last Friday of the contract month,
-Brent Crude Oil,BRN,ICE Futures Europe,Energy,1000 barrels,dollars and cents per barrel,1 cent,10.0,1000.0,USD,5770,,"The last business day of the second month preceding the relevant contract month.  If the day on which trading is due to cease would be either: (i) the Business Day preceding Christmas Day, or (ii) the Business Day preceding New Yearâ€™s Day, then trading shall cease on the next preceding Business Day",
-Crude Oil,CL,New York Mercantile Exchange (CME Group),Energy,1000 U.S. barrels (42000 gallons),dollars and cents per barrel,1 cent,10.0,1000.0,USD,7260,,"The third business day prior to the 25th calendar day of the month preceding the delivery month (or 
- the third business day prior to the first business day before the 25th, if the 25th is a non-business day).",
-Low Sulphur Gasoil,GAS,ICE Futures Europe,Energy,100 metric tonnes,dollars and cents per metric tonne,25 cents,25.0,100.0,USD,5542,,Two business days prior to the 14th calendar day of the delivery month.,
-UK Natural Gas,GWM,ICE Futures Europe,Energy,"1,000 therms",pounds and pence per therm,1 pence,10.0,1000.0,GBP,331,,Two business days prior to the first calendar day of the delivery month,
-NY Harbor ULSD,HO,New York Mercantile Exchange (CME Group),Energy,1000 U.S. barrels (42000 gallons),dollars and cents per gallon,0.01 of a cent,4.2,42000.0,USD,8580,,The last business day of the month preceding the delivery month.,
-Henry Hub Natural Gas,NG,New York Mercantile Exchange (CME Group),Energy,10000 million British thermal units (mmBtu),dollars and cents per mmBtu,0.1 of a cent,10.0,10000.0,USD,6050,,Three business day prior to the first calendar day of the delivery month.,
-RBOB Gasoline,RB,New York Mercantile Exchange (CME Group),Energy,1000 U.S. barrels (42000 gallons),dollars and cents per gallon,0.01 of a cent,4.2,42000.0,USD,8690,,The last business day of the month preceding the delivery month.,
-WTI Crude Oil,WBS,ICE Futures Europe,Energy,1000 barrels,dollars and cents per barrel,1 cent,10.0,1000.0,USD,6590,,The fourth US business day prior to the 25th calendar day of the month preceding the contract month. If the 25th calendar day of the month is not a US business day the Final Trade Day shall be the Trading Day which is the fourth US business day prior to the last US business day preceding the 25th calendar day of the month preceding the contract month.,
-Canadian Bankers Acceptance,BAX,Montreal Exchange,Interest Rate,CAD 1000000 three-month Canadian bankers,inverted yield (100 - interest rate),0.005 of a percent,12.5,2500.0,CAD,1528,,The second London banking day prior to the third Wednesday of the contract month.,
-10-Year Govt. of Canada Bond,CGB,Montreal Exchange,Interest Rate,"Canadian Govt. Bond, nominal value CAD 100000, coupon 6%",basis points,0.01 of a point,10.0,1000.0,CAD,3222,,The seventh business day preceding the last business day of the delivery month.,The third business day preceding the first business day of the delivery month.
-Euro-BTP Long-Term,FBTP,Eurex,Interest Rate,"Italian Govt. Bond, nominal value EUR 100,000",inverted yield (100 - interest rate),0.01 of a percent,10.0,1000.0,EUR,3443,,Two exchange days prior to the tenth calendar day of the relevant contract month,
-Euro-Bund,FGBL,Eurex,Interest Rate,"German government bonds, nominal value EUR 100000, maturity 8.5 to 10.5 years, coupon 6%",basis points,0.01 of a point,10.0,1000.0,EUR,2999,,Two exchange days prior to the tenth calendar day of the relevant contract month,
-Euro-Bobl,FGBM,Eurex,Interest Rate,"German government bonds, nominal value EUR 100000 maturity 4.5 to 5.5 years, coupon 6%",basis points,0.01 of a point,10.0,1000.0,EUR,1753,,Two exchange days prior to the tenth calendar day of the relevant contract month,
-Euro-Schatz,FGBS,Eurex,Interest Rate,"German government bonds, nominal value EUR 100000, maturity 1.7 to 2.25 years, coupon 6%",basis points,0.005 of a point,5.0,1000.0,EUR,779,,Two exchange days prior to the tenth calendar day of the relevant contract month,
-Euro-Buxl,FGBX,Eurex,Interest Rate,"German government bonds, nominal value EUR 100000, maturity 24 to 35 years, coupon 4%",basis points,0.02 of a point,20.0,1000.0,EUR,5950,,Two exchange days prior to the tenth calendar day of the relevant contract month,
-Euro-OAT,FOAT,Eurex,Interest Rate,"French Govt. Bond, nominal value EUR 100,000",inverted yield (100 - interest rate),0.01 of a percent,10.0,1000.0,EUR,3011,,Two exchange days prior to the tenth calendar day of the relevant contract month,
-Euribor,LEU,ICE Futures Europe,Interest Rate,EUR 1000000 three-month Euro deposits,inverted yield (100 - interest rate),0.005 of a percent,12.5,2500.0,EUR,1217,,Two business days prior to the third Wednesday of the contract month.,
-Long Gilt,LLG,ICE Futures Europe,Interest Rate,"Notional Gilt, face value 100000 GBP, coupon 6%",basis points,0.01 of a point,10.0,1000.0,GBP,5190,,Two business days prior to the last business day of the delivery month.,Second last business day of the month before the delivery month
-Japanese Govt Bond - Mini,SJB,Singapore Exchange,Interest Rate,"10-Year Japanese Govt. Bond, nominal value JPY 10 million, coupon 6%",basis points,0.01 of a point,1000.0,100000.0,JPY,220000,,8 business days before the 20th calendar day of the contract month.,
-3-Month SOFR,SR3,Chicago Mercantile Exchange (CME Group),Interest Rate,"$2,500 x contract-grade IMM Index",inverted yield (100 - SOFR average),0.0025 IMM Index points,6.25,2500.0,USD,935,,Business day prior to the 3rd Wednesday of the contract month,
-Ultra 10-Year U.S. T-Note,TN,Chicago Board of Trade (CME Group),Interest Rate,"U.S. Treasury note having a face value at maturity of $100,000 or multiple t",basis points,half of a 32nd of a point,15.625,1000.0,USD,3080,,The seventh business day preceding the last business day of the delivery month,The last business day of the month preceding the delivery month.
-Ultra U.S. T-Bond,UB,Chicago Board of Trade (CME Group),Interest Rate,"U.S. Treasury bonds having a face value of $100,000 or multiples thereof",basis points,1/32nd of a point,31.25,1000.0,USD,7150,,The seventh business day preceding the last business day of the delivery month,The last business day of the month preceding the delivery month.
-ASX 30 Day Interbank Cash Rate,YIB,Australian Securities Exchange,Interest Rate,"Overnight cash deposits, nominal value AUD 3000000",inverted yield (100 - interest rate),0.005 of a percent,12.33,8932.0,AUD,740,,The last business day of the contract month.,
-ASX 90 Day Bank Accepted Bills,YIR,Australian Securities Exchange,Interest Rate,AUD 1000000 90 Day Bank Accepted Bills of Exchange,inverted yield (100 - interest rate),0.01 of a percent,24.0,2400.0,AUD,1380,,The business day prior to the second Friday of the delivery month.,
-ASX 10 Year Treasury Bond,YXT,Australian Securities Exchange,Interest Rate,"Commonwealth Govt. 10 Year Treasury Bond, nominal value AUD 100000, coupon 6%",inverted yield (100 - interest rate),0.0025 of a percent,20.0,8000.0,AUD,3129,,The 15th calendar day of the delivery month (or the next succeeding business day),
-ASX 3 Year Treasury Bond,YYT,Australian Securities Exchange,Interest Rate,"Commonwealth Govt. 3 Year Treasury Bond, nominal value AUD 100000, coupon 6%",inverted yield (100 - interest rate),0.005 of a percent,14.0,2800.0,AUD,1168,,The 15th calendar day of the delivery month (or the next succeeding business day),
-U.S. T-Bond,ZB,Chicago Board of Trade (CME Group),Interest Rate,U.S. Treasury bond having a face value at maturity of $100000 or multiple t,basis points,1/32nd of a point,31.25,1000.0,USD,4290,,The seventh business day preceding the last business day of the delivery month,The last business day of the month preceding the delivery month.
-5-Year U.S. T-Note,ZF,Chicago Board of Trade (CME Group),Interest Rate,"U.S. Treasury note having a face value at maturity of $100,000 or multiple t",basis points,quarter of a 32nd of a point,7.8125,1000.0,USD,1485,,The last business day of the delivery month,The last business day of the month preceding the delivery month.
-10-Year U.S. T-Note,ZN,Chicago Board of Trade (CME Group),Interest Rate,"U.S. Treasury note having a face value at maturity of $100,000 or multiple t",basis points,half of a 32nd of a point,15.625,1000.0,USD,2200,,The seventh business day preceding the last business day of the delivery month,The last business day of the month preceding the delivery month.
-30 Day Federal Funds,ZQ,Chicago Board of Trade (CME Group),Interest Rate,USD 5000000,inverted yield (100 - interest rate),0.0025 of a percent,10.4175,4167.0,USD,1595,,The last business day of the contract month.,
-2-Year U.S. T-Note,ZT,Chicago Board of Trade (CME Group),Interest Rate,U.S. Treasury note having a face value at maturity of $200000 or multip,basis points,one eighth of a 32nd of a point,7.8125,2000.0,USD,1320,,The last business day of the delivery month,The last business day of the month preceding the delivery month.
-Gold,GC,New York Mercantile Exchange (CME Group),Metal,100 troy ounces,dollars and cents per troy ounce,10 cents,10.0,100.0,USD,9130,,The third last business day of the delivery month.,The last business day of the month preceding the delivery month.
-Copper,HG,New York Mercantile Exchange (CME Group),Metal,25000 pounds,cents per pound,0.05 of a cent,12.5,250.0,USD,6050,,The third last business day of the delivery month.,The last business day of the month preceding the delivery month.
-Palladium,PA,New York Mercantile Exchange (CME Group),Metal,100 troy ounces,dollars and cents per troy ounce,10 cents,10.0,100.0,USD,17050,,The third last business day of the delivery month.,The last business day of the month preceding the delivery month.
-Platinum,PL,New York Mercantile Exchange (CME Group),Metal,50 troy ounces,dollars and cents per troy ounce,10 cents,5.0,50.0,USD,3080,,The third last business day of the delivery month.,The last business day of the month preceding the delivery month.
-Silver,SI,New York Mercantile Exchange (CME Group),Metal,5000 troy ounces,cents per troy ounce,0.5 of a cent,25.0,50.0,USD,9350,,The third last business day of the delivery month.,The last business day of the month preceding the delivery month.
-Mini-Gold,YG,ICE Futures US,Metal,33.2 fine troy ounces,dollars and cents per fine troy ounce,10 cents,3.215,32.15,USD,1594,,The third last business day of the delivery month.,The last business day of the month preceding the delivery month.
-Mini-Silver,YI,ICE Futures US,Metal,1000 troy ounces,dollars and cents per troy ounce,0.1 of a cent,1.0,1000.0,USD,1757,,The third last business day of the delivery month.,The last business day of the month preceding the delivery month.
-E-mini S&P MidCap 400,EMD,Chicago Mercantile Exchange (CME Group),Stock Index,$100 x the S&P MidCap 400 Index,index points,0.1 of a point,10.0,100.0,USD,15840,,"The business day of determination of the Final Settlement Price (normally, the 3rd Friday of the contract month).",
-E-mini S&P 500,ES,Chicago Mercantile Exchange (CME Group),Stock Index,$50 x the S&P 500 Index,index points,0.25 of a point,1.25,5.0,USD,1232,,"The business day of determination of the Final Settlement Price (normally, the 3rd Friday of the contract month).",
-CAC 40,FCE,Euronext,Stock Index,10 EUR x the CAC 40 Index,index points,0.5 of an index point,5.0,10.0,EUR,5500,,The third Friday of the contract month.,
-DAX,FDAX,Eurex,Stock Index,EUR 25 x the DAX Index,index points,0.5 of a point,12.5,25.0,EUR,29818,,"The Final Settlement Day (normally, the 3rd Friday of the contract month).",
-EURO STOXX 50,FESX,Eurex,Stock Index,EUR 10 x the EURO STOXX 50 Index,index points,1 point,10.0,10.0,EUR,3081,,"The Final Settlement Day (normally, the 3rd Friday of the contract month).",
-Swiss Market Index,FSMI,Eurex,Stock Index,CHF 10 x the Swiss Market Index,index points,1 point,10.0,10.0,CHF,6291,,"The Final Settlement Day (normally, the 3rd Friday of the contract month).",
-TecDAX,FTDX,Eurex,Stock Index,EUR 10 x the TecDAX Index,index points,0.5 points,5.0,10.0,EUR,2431,,"The Final Settlement Day (normally, the 3rd Friday of the contract month).",
-Hang Seng Index,HSI,Hong Kong Futures Exchange,Stock Index,HKD 50 x the Hang Seng Index,index points,1 point,50.0,50.0,HKD,89575,,The business day immediately preceding the last business day of the contract month,
-MSCI Taiwan Index,HTW,Hong Kong Futures Exchange,Stock Index,USD 100 x the MSCI Taiwan Index,index points,0.1 of a point,10.0,100.0,USD,3857,,The second last business day of the contract month.,
-KOSPI 200,KOS,Korea Exchange,Stock Index,250000 KRW x the KOSPI 200 Index,index points,0.05 of a point,12500.0,250000.0,KRW,12553100,,The second Thursday of the contract month.,
-FTSE 100,LFT,ICE Futures Europe,Stock Index,GBP 10 x the FTSE 100 Index,index points,0.5 of an index point,5.0,10.0,GBP,4065,,The third Friday of the contract month.,
-Micro E-mini Russell 2000,M2K,Chicago Mercantile Exchange (CME Group),Stock Index,$5 x the Russell 2000 Index,index points,0.1 of a point,0.5,5.0,USD,682,,The 3rd Friday of the contract month,
-Micro E-mini S&P 500,MES,Chicago Mercantile Exchange (CME Group),Stock Index,$5 x the S&P 500 Index,index points,0.25 of a point,1.25,5.0,USD,1232,,The 3rd Friday of the contract month,
-Hang Seng Index - Mini,MHI,Hong Kong Futures Exchange,Stock Index,HKD 10 x the Hang Seng Index,index points,1 point,10.0,10.0,HKD,17915,,The business day immediately preceding the last business day of the contract month,
-Micro E-mini Nasdaq-100,MNQ,Chicago Mercantile Exchange (CME Group),Stock Index,$2 x the Nasdaq-100 Index,index points,0.25 of a point,0.5,2.0,USD,1848,,The 3rd Friday of the contract month,
-Micro E-mini Dow Jones Industrial Average,MYM,Chicago Board of Trade (CME Group),Stock Index,$0.50 x the Dow Jones Industrial Average,index points,1 point,0.5,0.5,USD,880,,The 3rd Friday of the contract month,
-Nikkei 225 Yen,NIY,Chicago Mercantile Exchange (CME Group),Stock Index,500 Yen x the Nikkei 225 Stock Average,index points,5 points,2500.0,500.0,JPY,572000,,The business day prior to the second Friday of the contract month.,
-Nikkei 225 Dollar,NKD,Chicago Mercantile Exchange (CME Group),Stock Index,$5 x the Nikkei 225 Stock Average,index points,5 points,25.0,5.0,USD,6820,,The business day prior to the second Friday of the contract month.,
-E-mini Nasdaq-100,NQ,Chicago Mercantile Exchange (CME Group),Stock Index,$20 x the Nasdaq-100 Index,index points,0.25 of a point,0.5,2.0,USD,1848,,"The business day of determination of the Final Settlement Price (normally, the 3rd Friday of the contract month).",
-E-mini Russell 2000,RTY,Chicago Mercantile Exchange (CME Group),Stock Index,$50 x the Russell 2000 Index,index points,0.1 of a point,0.5,5.0,USD,682,,"The business day of determination of the Final Settlement Price (normally, the 3rd Friday of the contract month).",
-FTSE China A50 Index,SCN,Singapore Exchange,Stock Index,$1 x SGX FTSE China A50 Index Futures Price,Index Points,1 points,1.0,1.0,USD,880,,2nd last business day of the contract month,
-Nikkei 225 (SGX),SNK,Singapore Exchange,Stock Index,JPY 500 x the Nikkei 225 Index,index points,5 points,2500.0,500.0,JPY,792000,,The business day before the second Friday of the contract month.,
-MSCI Singapore Index,SSG,Singapore Exchange,Stock Index,SGD 100 x the MSCI Singapore Free Index,index points,0.05 of a point,5.0,100.0,SGD,1430,,The second to last business day of the contract month.,
-S&P/TSX 60 Index,SXF,Montreal Exchange,Stock Index,CAD 200 x the S&P/TSX 60 Index,index points,0.1 of a point,20.0,200.0,CAD,12943,,"The business day preceding the Final Settlement Day (normally, the Thursday before the third Friday of the contract month).",
-CBOE Volatility Index,VX,Cboe Futures Exchange,Stock Index,$1000 x the value of the VIX,Index Points,0.05 of a point,50.0,1000.0,USD,8074,,The day before the Wednesday that is thirty days prior to the third Friday of the calendar month immediately following the month in which the contract expires,
-ASX SPI 200,YAP,Australian Securities Exchange,Stock Index,AUD 25 x the S&P/ASX 200 Index,index points,1 point,25.0,25.0,AUD,14788,,The third Thursday of the contract month.,
-E-mini Dow ($5),YM,Chicago Board of Trade (CME Group),Stock Index,$5 x the Dow Jones Industrial Average,index points,1 point,0.5,0.5,USD,880,,"The business day preceding the Final Settlement day (normally, the Thursday before the 3rd Friday of the contract month).",
+Asset,Description,Pointsize,Currency,Class,Region,IB Sym,Data Symbol,Exchange,IB Mult,MC Symbol,Data
+CAC,French equity index CAC40,10,EUR,Equity,EMEA,CAC40,FCE,MONEP,10,"MT#C	",1999
+CAD,CADUSD currency,100000,USD,FX,US,CAD,6C,CME,100000,@CD#C,1995
+CHF,CHFUSD currency,125000,USD,FX,US,CHF,6S,CME,125000,@SF#C,1995
+COTTON2,Cotton #2,500,USD,Ags,US,CT,CT,NYBOT,500,"@CT#C	",1994
+ROBUSTA,Robusta Coffee,10,USD,Ags,EMEA,D,LRC,ICEEUSOFT,10,"LRC#C	",2005
+DAX,Micro DAX 30 Index (Deutsche Aktien Xchange 30),1,EUR,Equity,EMEA,DAX,FDAX,EUREX,1,XG#C,1990
+EUR,EURUSD currency,125000,USD,FX,US,EUR,6E,CME,125000,@EU#C,1999
+GBP,GBPUSD currency,62500,USD,FX,US,GBP,6B,CME,62500,@BP#C,1995
+FEEDCOW,Feeder cattle,500,USD,Ags,US,GF,GF,CME,500,"@GF#C	",2001
+LEANHOG,Lean hogs,400,USD,Ags,US,HE,HE,CME,400,"@HE#C	",1994
+JPY,JPYUSD currency,12500000,USD,FX,US,JPY,6J,CME,12500000,@JY#C,1995
+COFFEE,Coffee,375,USD,Ags,US,KC,KC,NYBOT,375,@KC#C,1994
+REDWHEAT,Hard Red Winter Wheat -KCBOT-,50,USD,Ags,US,KE,KE,CBOT,50,"@KW#C	",1994
+LIVECOW,Live cattle,400,USD,Ags,US,LE,LE,CME,400,"@LE#C	",1994
+RUSSELL,Micro E-Mini Russell 2000 Index,5,USD,Equity,US,M2K,RTY,CME,5,"@RTY#C	",2003
+AUD_micro,AUDUSD micro,10000,USD,FX,US,M6A,6A,CME,10000,"@M6A#C	",2009
+CRUDE_W_micro,micro WTI crude oil,100,USD,OilGas,US,MCL,WBS,NYMEX,100,"@QM#C	",2004
+SP500_micro,S&P 500 micro,5,USD,Equity,US,MES,ES,CME,5,"@ES#C	",1998
+GOLD_micro,Gold micro,10,USD,Metals,US,MGC,GC,COMEX,10,"@QO#C	",2006
+COPPER-micro,Copper micro,2500,USD,Metals,US,MHG,HG,COMEX,2500,"@QC#C	",2006
+NASDAQ_micro,NASDAQ micro,2,USD,Equity,US,MNQ,NQ,CME,2,"@NQ#C	",1999
+GASOILINE,RBOB Gasoline US (Micro),4200,USD,OilGas,US,MRB,RB,NYMEX,4200,QRB#C,1984
+MXP,MEXUSD currency,500000,USD,FX,US,MXP,6M,CME,500000,@PX#C,1995
+DOW,Micro E-Mini Dow Jones Industrial Average Index,0.5,USD,Equity,US,MYM,YM,CBOT,0.5,@YM,2002
+NZD,NZDUSD currency,100000,USD,FX,US,NZD,6N,CME,100000,@NE#C,1997
+PLAT,Platinum,50,USD,Metals,US,PL,PL,NYMEX,50,QPL#C,1994
+SUGAR11,Sugar #11,1120,USD,Ags,US,SB,SB,NYBOT,1120,"@SB#C	",1994
+SILVER,NYMEX Silver Index,1000,USD,Metals,US,SI,SI,COMEX,1000,QSI#C,1991
+SMI,Micro Swiss equity index SMI,1,CHF,Equity,EMEA,SMI,FSMI,EUREX,10,"SW#C	",2004
+US30,Ultra Treasury Bond,1000,USD,Bond,US,UB,UB,CBOT,1000,"@US#C	",1984
+VIX_mini,Vol US equity VIX mini,100,USD,Vol,US,VXM,VX,CFE,100,"@VX#C	",2005
+SUGAR_WHITE,White sugar,50,USD,Ags,EMEA,W,LSU,ICEEUSOFT,50,"QW#C	",1997
+FTSECHINAA,FTSE/Xinhua China A50,1,USD,Equity,ASIA,XINA50,SCN,SGX,1,CN#C,2006
+SOYBEAN_mini,Soybean mini,10,USD,Ags,US,YK,ZS,CBOT,10,"@YK#C	",2007
+WHEAT_mini,Wheat mini,10,USD,Ags,US,YW,ZW,CBOT,10,"@YW#C	",2008
+CORN,Corn,50,USD,Ags,US,ZC,ZC,CBOT,50,@C#C,1995
+SOYOIL,Soybean oil,600,USD,Ags,US,ZL,ZL,CBOT,600,"@BO#C	",1984
+SOYMEAL,Soybean Meal,100,USD,Ags,US,ZM,ZM,CBOT,100,"@SM#C	",1984
+US10,US 10 year bond note,1000,USD,Bond,US,ZN,ZN,CBOT,1000,"@TY#C	",1983
+RICE,Rough Rice,2000,USD,Ags,US,ZR,ZR,CBOT,2000,"@RR#C	",1995

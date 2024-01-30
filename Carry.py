@@ -50,6 +50,17 @@ def calc_idm(instrument_list: list) -> float:
     raise ValueError("Instrument Diversity Multiplier not found")
 
 def carry_forecast(instr_list: list, weights: dict, capital: int, risk_target_tau: float, multipliers: dict, carry_spans: list, adjusted_prices_dict, current_prices_dict, carry_prices_dict) :
+    print(instr_list)
+    print(weights) 
+    #print(capital)
+    #print(risk_target_tau)
+    #print(multipliers)
+    #print(carry_spans)
+    #print(adjusted_prices_dict)
+    #print(current_prices_dict)
+    #print(carry_prices_dict) 
+    quit()
+
 
     fx_series_dict = create_fx_series_given_adjusted_prices_dict(adjusted_prices_dict)
 
@@ -114,9 +125,12 @@ def carry_forecast(instr_list: list, weights: dict, capital: int, risk_target_ta
 # List of all instruments in the portfolio
 def main():
 
-    instruments = ['ES', 'RB', 'ZS', 'ZL']
+    instruments = ['FCE', '6C', '6S', 'CT', 'LRC', 'FDAX', '6E', '6B', 'GF', 'HE', '6J', 'KC', 'KE',
+                   'LE', 'RTY', '6A', 'WBS', 'ES', 'GC', 'HG', 'NQ', 'RB', '6M', 'YM', '6N',
+                   'PL', 'SB', 'SI', 'FSMI', 'UB', 'VX', 'LSU', 'SCN', 'ZS', 'ZW', 'ZC', 'ZL', 
+                   'ZM', 'ZN', 'ZR']
     symbols = pd.read_csv('Symbols.csv')
-    all_instruments = symbols['Code'].to_list()
+    all_instruments = symbols['Data Symbol'].to_list()
 
     adjusted_prices_dict, current_prices_dict = sql.get_data(instruments)
 
