@@ -50,8 +50,8 @@ def calc_idm(instrument_list: list) -> float:
     raise ValueError("Instrument Diversity Multiplier not found")
 
 def carry_forecast(instr_list: list, weights: dict, capital: int, risk_target_tau: float, multipliers: dict, carry_spans: list, adjusted_prices_dict, current_prices_dict, carry_prices_dict) :
-    print(instr_list)
-    print(weights) 
+    #print(instr_list)
+    #print(weights) 
     #print(capital)
     #print(risk_target_tau)
     #print(multipliers)
@@ -59,7 +59,7 @@ def carry_forecast(instr_list: list, weights: dict, capital: int, risk_target_ta
     #print(adjusted_prices_dict)
     #print(current_prices_dict)
     #print(carry_prices_dict) 
-    quit()
+    #quit()
 
 
     fx_series_dict = create_fx_series_given_adjusted_prices_dict(adjusted_prices_dict)
@@ -149,7 +149,7 @@ def main():
 
     carry_spans = [5,20,60,120]
 
-    capital = 400000
+    capital = 500000
 
     buffered_pos, pos = carry_forecast(all_instruments, weights, capital, risk_target_tau, multipliers, carry_spans, adjusted_prices_dict=adjusted_prices_dict,
                                        current_prices_dict=current_prices_dict, carry_prices_dict=carry_prices_dict)
